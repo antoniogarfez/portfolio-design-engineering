@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>800/1100L Containers — Antonio García Fernández</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Estilos para el layout de dos columnas dentro del texto */
+    .two-column-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin: 40px 0;
+      align-items: start;
+    }
+    
+    .text-column {
+      flex: 1;
+    }
+    
+    .image-column {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .image-column img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    
+    /* Estilos para paneles técnicos */
+    .panel-item {
+      position: relative;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: #1a1a1a;
+      aspect-ratio: 16/9;
+    }
+    
+    .panel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+    }
+    
+    .panel-item:hover img {
+      transform: scale(1.04);
+    }
+    
+    .panel-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .panel-item:hover .panel-label {
+      opacity: 1;
+    }
+    
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.96);
+      cursor: zoom-out;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+    
+    #lightbox.open {
+      display: flex !important;
+    }
+    
+    #lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    
+    #lightbox-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    
+    .lightbox-close {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.15em;
+    }
+    
+    @media (max-width: 768px) {
+      .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .image-column {
+        position: relative;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="cursor"></div><div class="cursor-follower"></div>
+<button class="mobile-menu-btn"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><rect width="20" height="1.5" fill="currentColor"/><rect y="6" width="14" height="1.5" fill="currentColor"/><rect y="12" width="20" height="1.5" fill="currentColor"/></svg></button>
+<nav class="mobile-nav"><button class="mobile-nav-close">✕ CLOSE</button><a href="../index.html">Home</a><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../contact.html">Contact</a></nav>
+<div class="site-wrap">
+  <aside class="sidebar">
+    <a href="../index.html" class="sidebar-logo">AG·FZ</a>
+    <nav class="sidebar-nav">
+      <a href="../index.html">00 // Home</a><a href="../work.html" class="active">01 // Work</a><a href="../about.html">02 // About</a><a href="../cv.html">03 // CV</a><a href="../contact.html">04 // Contact</a>
+    </nav>
+    <div class="sidebar-coords">43.3623°N<br>8.4115°W<br>ESP</div>
+  </aside>
+  <main class="main-content">
+    <div class="topbar"><span class="topbar-title">02 // 800/1100L REAR-LOAD CONTAINERS</span><div class="topbar-status"><div class="status-dot"></div><span class="topbar-meta">2023–2024</span></div></div>
+    <a href="../work.html" class="back-link">← Back to All Projects</a>
+
+    <div class="project-hero">
+      <img src="../images/containers-thumb.jpg" alt="800/1100L Containers" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,#0a1a0a,#0d1a0d)'">
+      <div class="project-hero-overlay"></div>
+      <div class="project-hero-content">
+        <div class="project-meta-row">
+          <span class="meta-pill">02</span>
+          <span class="meta-pill">2023–2024</span>
+          <span class="meta-pill">FrutoDS · Formato Verde</span>
+          <span class="meta-pill">Urban Furniture</span>
+        </div>
+        <div class="project-title-block"><h1>Rear-Load<br><span>Containers</span><br>800/1100L</h1></div>
+      </div>
+    </div>
+    <!-- Logo de FrutoDS en esquina superior derecha -->
+      <div style="position: absolute; top: 130px; right: 80px; z-index: 20;">
+        <img src="../images/frutods-logo.png" 
+             alt="FrutoDS Logo" 
+             style="height: 160px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
+             onerror="this.style.display='none'">
+      </div>
+
+    <div class="project-body">
+      <div class="project-text">
+        <h2>Project Brief</h2>
+        <p>Design new concepts for rear-load containers of 800 and 1100 litre capacity, in collaboration with FrutoDS and Formato Verde — companies specialising in urban waste management solutions for local councils.</p>
+        <p><strong>What?</strong> New rear-loading container concepts. <strong>Who?</strong> Urban planning departments and city councils. <strong>How?</strong> Plastic — injection moulding and rotomoulding. <strong>Where?</strong> High-demand public areas.</p>
+
+        <!-- Layout de dos columnas: texto e imagen vertical -->
+        <div class="two-column-layout">
+          <div class="text-column">
+            <h2>Design Rationale</h2>
+            <p>The container features a dual-lid system: one for operator emptying and one partial-opening lid for users to deposit waste. The surface reliefs provide structural rigidity. The lateral handles are slightly angled for improved ergonomics, making manipulation easier for waste operators.</p>
+            <p>Three core design values guided the concept: <strong>Robusto</strong> (robustness for outdoor use), <strong>Duradero</strong> (longevity through smart material and surface treatment), and <strong>Cómodo</strong> (comfort for both end users and waste operators).</p>
+
+            <h2>Colour Strategy</h2>
+            <p>The container family was designed to adapt to sorting systems through colour-coded lid variants — green for organic, blue for paper/cardboard, and yellow for plastic/metal — allowing flexible deployment across different municipal contexts.</p>
+
+            <h2>Technical Output</h2>
+            <p>Deliverables included: orthographic technical drawings, 3D model in Solidworks and Rhinoceros, rendered views in multiple colour variants, life-size proportional mock-up studies, and presentation panels.</p>
+          </div>
+          
+          <div class="image-column">
+            <img src="../images/renders-containers.png" alt="Container renders" onerror="this.style.background='#111'; this.style.height='400px'">
+          </div>
+        </div>
+      </div>
+
+      <div class="project-sidebar-info">
+        <div class="info-block"><h4>Project Details</h4>
+          <div class="info-row"><span class="key">Year</span><span class="val">2023–2024</span></div>
+          <div class="info-row"><span class="key">Duration</span><span class="val">8 months</span></div>
+          <div class="info-row"><span class="key">Client</span><span class="val">FrutoDS / Formato Verde</span></div>
+          <div class="info-row"><span class="key">Type</span><span class="val">Urban Furniture</span></div>
+        </div>
+        <div class="info-block"><h4>Tools Used</h4>
+          <div class="info-row"><span class="key">3D</span><span class="val">SolidWorks / Rhinoceros</span></div>
+          <div class="info-row"><span class="key">Design</span><span class="val">Illustrator / InDesign</span></div>
+          <div class="info-row"><span class="key">Other</span><span class="val">AutoCAD / Fusion</span></div>
+        </div>
+        <div class="info-block"><h4>Keywords</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">URBAN</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">ERGONOMICS</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">INJECTION</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">WASTE</span>
+          </div>
+        </div>
+        <a href="../contact.html" class="btn btn-primary" style="display:block;text-align:center;">Discuss this project →</a>
+      </div>
+    </div>
+
+    <!-- Sección de paneles técnicos -->
+    <div style="margin: 40px 48px 20px 48px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px;">TECHNICAL DELIVERABLES</div>
+      <h2 style="font-family: var(--font-head); font-size: 20px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text);">Final panels</h2>
+    </div>
+
+    <div class="gallery-grid cols-2" style="margin:0 48px 64px;">
+      <div class="panel-item" onclick="openLightbox('../images/containers-panel.png', 'Panel 01 — Technical Drawings & Specifications')">
+        <img src="../images/containers-panel.png" alt="Panel 01">
+        <div class="panel-label">01 // Technical Drawings</div>
+      </div>
+      <div class="panel-item" onclick="openLightbox('../images/containers-panel1.png', 'Panel 02 — Renders & Colour Variants')">
+        <img src="../images/containers-panel1.png" alt="Panel 02">
+        <div class="panel-label">02 // Renders & Colour Variants</div>
+      </div>
+    </div>
+
+    <!-- Imágenes finales de la galería -->
+    <div class="gallery-grid cols-2" style="margin:0 48px 64px;">
+      <img src="../images/containers-thumb.jpg" alt="Container View 1" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
+      <img src="../images/containers-street.jpg" alt="Container Street Scene" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
+      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="proraptor.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Proraptor</a></div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="wastebin.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Urban Bins →</a></div>
+    </div>
+    <footer><span class="footer-copy">© 2025 Antonio García Fernández</span><div class="footer-links"><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div></footer>
+  </main>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
+  <div class="lightbox-close">CLICK PARA CERRAR / ESC</div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+function openLightbox(src, caption) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = caption;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>

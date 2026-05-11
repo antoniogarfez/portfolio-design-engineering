@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cupra Proraptor — Amphibious Motorcycle Concept / Antonio García Fernández</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .mode-diagram {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+    .mode-box {
+      padding: 28px 24px;
+      background: var(--bg);
+    }
+    .mode-num {
+      font-family: var(--font-head);
+      font-size: 36px;
+      color: var(--border2);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .mode-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .mode-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    /* ============================================ */
+    /* EFECTO ROTATORIO SOLO PARA CMF Y FINAL PANELS */
+    /* ============================================ */
+
+    /* Aplicar solo a CMF items y galería final */
+    .cmf-item-new,
+    .gallery-grid .panel-item {
+      position: relative;
+      cursor: default;
+    }
+    
+    /* Cuadrado grande que rota */
+    .cmf-item-new:hover::before,
+    .gallery-grid .panel-item:hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent);
+      z-index: 15;
+      pointer-events: none;
+      animation: rotateSquare 0.5s ease-in-out forwards;
+      box-sizing: border-box;
+    }
+    
+    /* Cuadrado pequeño que se encoge */
+    .cmf-item-new:hover::after,
+    .gallery-grid .panel-item:hover::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: 70%;
+      border: 1px solid var(--accent);
+      z-index: 15;
+      pointer-events: none;
+      animation: shrinkSquare 0.4s ease-in-out forwards;
+      box-sizing: border-box;
+    }
+    
+    /* Animaciones */
+    @keyframes rotateSquare {
+      0% {
+        transform: rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes shrinkSquare {
+      0% {
+        width: 80%;
+        height: 80%;
+        opacity: 0;
+      }
+      100% {
+        width: 55%;
+        height: 55%;
+        opacity: 1;
+      }
+    }
+    
+    /* Al salir del hover, desaparecen suavemente */
+    .cmf-item-new:not(:hover)::before,
+    .gallery-grid .panel-item:not(:hover)::before {
+      animation: rotateSquareReverse 0.3s ease-in-out forwards;
+      opacity: 0;
+    }
+    
+    .cmf-item-new:not(:hover)::after,
+    .gallery-grid .panel-item:not(:hover)::after {
+      animation: shrinkSquareReverse 0.3s ease-in-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes rotateSquareReverse {
+      0% {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(0deg);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes shrinkSquareReverse {
+      0% {
+        width: 55%;
+        height: 55%;
+        opacity: 1;
+      }
+      100% {
+        width: 80%;
+        height: 80%;
+        opacity: 0;
+      }
+    }
+    
+    /* Asegurar que las imágenes sigan siendo clickeables */
+    .cmf-item-new img,
+    .gallery-grid .panel-item img {
+      position: relative;
+      z-index: 2;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    
+    /* Desactivar el efecto en hover-zoom-container (Navantia no se ve afectado) */
+    .hover-zoom-container:hover::before,
+    .hover-zoom-container:hover::after {
+      display: none !important;
+      animation: none !important;
+      content: none !important;
+    }
+    /* CMF GALLERY */
+    .cmf-gallery {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin: 32px 0;
+    }
+    
+    .cmf-item {
+      position: relative;
+      overflow: visible;
+      background: transparent;
+      aspect-ratio: 4/3;
+      cursor: zoom-in;
+      z-index: 1;
+      transition: z-index 0s 0.3s;
+    }
+    
+    .cmf-item:hover {
+      z-index: 100;
+      transition: z-index 0s 0s;
+    }
+    
+    .cmf-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+      background: transparent;
+      position: relative;
+    }
+    
+    .cmf-item:hover img {
+      object-fit: contain;
+      width: 170%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--bg);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      z-index: 101;
+      padding: 8px;
+    }
+    
+    .cmf-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      text-align: center;
+      z-index: 102;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    
+    .cmf-item:hover .cmf-label {
+      opacity: 1;
+    }
+    
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .feature-box {
+      padding: 28px;
+      background: var(--bg);
+    }
+    .feature-box h4 {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .feature-box p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    
+       /* CMF GALLERY - 2x2 con hover suave */
+    .cmf-gallery-new {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    
+    .cmf-item-new {
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    .cmf-item-new img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease-in-out;
+      border-radius: 4px;
+    }
+    
+    /* HOVER: solo un ligero zoom */
+    .cmf-item-new:hover img {
+      transform: scale(1.1);
+    }
+    
+    .cmf-label-new {
+      text-align: center;
+      margin-top: 8px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      transition: opacity 0.2s ease;
+    }
+    /* PANELES TÉCNICOS */
+    .panel-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #1a1a1a;
+      aspect-ratio: 16/9;
+    }
+    .panel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+    }
+    .panel-item:hover img {
+      transform: scale(1.04);
+    }
+    .panel-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .panel-item:hover .panel-label {
+      opacity: 1;
+    }
+    
+    /* LIGHTBOX CON NAVEGACIÓN */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.96);
+      cursor: default;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+    #lightbox.open {
+      display: flex !important;
+    }
+    .lightbox-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 85vh;
+    }
+    #lightbox-img {
+      max-width: 85%;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--accent);
+      color: white;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      z-index: 10001;
+    }
+    .lightbox-nav:hover {
+      background: var(--accent);
+      color: #000;
+    }
+    .lightbox-prev {
+      left: 20px;
+    }
+    .lightbox-next {
+      right: 20px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      z-index: 10001;
+    }
+    .lightbox-close:hover {
+      color: var(--accent);
+    }
+    .lightbox-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+    }
+    #lightbox-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<button class="mobile-menu-btn" aria-label="Open menu">
+  <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+    <rect width="20" height="1.5" fill="currentColor"/>
+    <rect y="6" width="14" height="1.5" fill="currentColor"/>
+    <rect y="12" width="20" height="1.5" fill="currentColor"/>
+  </svg>
+</button>
+
+<nav class="mobile-nav">
+  <button class="mobile-nav-close">✕ CLOSE</button>
+  <a href="../index.html">Home</a>
+  <a href="../work.html">Work</a>
+  <a href="../about.html">About</a>
+  <a href="../cv.html">CV</a>
+  <a href="../contact.html">Contact</a>
+</nav>
+
+<div class="site-wrap">
+  <aside class="sidebar">
+    <a href="../index.html" class="sidebar-logo">AG·FZ</a>
+    <nav class="sidebar-nav">
+      <a href="../index.html">00 // Home</a>
+      <a href="../work.html" class="active">01 // Work</a>
+      <a href="../about.html">02 // About</a>
+      <a href="../cv.html">03 // CV</a>
+      <a href="../contact.html">04 // Contact</a>
+    </nav>
+    <div class="sidebar-coords">43.3623°N<br>8.4115°W<br>ESP</div>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <span class="topbar-title">01 // CUPRA PRORAPTOR — AMPHIBIOUS MOTORCYCLE</span>
+      <div class="topbar-status">
+        <div class="status-dot"></div>
+        <span class="topbar-meta">TFG 2024–2025</span>
+      </div>
+    </div>
+
+    <!-- Back -->
+    <a href="../work.html" class="back-link">← Back to All Projects</a>
+
+    <!-- ─── PROJECT HERO ─── -->
+    <div class="project-hero">
+      <img src="../images/proraptor-hero.jpg" alt="Cupra Proraptor Amphibious Motorcycle"
+           onerror="this.src=''; this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a1a1a)'">
+      <div class="project-hero-overlay"></div>
+      
+      <!-- Logo de CUPRA en esquina superior izquierda -->
+      <div style="position: absolute; top: 40px; right: 520px; z-index: 20;">
+        <img src="../images/cupra-logo2.png" 
+             alt="CUPRA Logo" 
+             style="height: 80px; width: auto; filter: brightness(0) invert(1); opacity: 0.95;"
+             onerror="this.style.display='none'">
+      </div>
+      <div style="position: absolute; top: 60px; right: 350px; z-index: 20;">
+        <img src="../images/cupra-logo.png" 
+             alt="CUPRA Logo" 
+             style="height: 30px; width: auto; filter: brightness(0) invert(1); opacity: 0.95;"
+             onerror="this.style.display='none'">
+      </div>
+      
+      <div class="project-hero-content">
+        <div class="project-meta-row">
+          <span class="meta-pill">01</span>
+          <span class="meta-pill">2024–2025</span>
+          <span class="meta-pill">SEAT · CUPRA</span>
+          <span class="meta-pill">Final Degree Project</span>
+          <span class="meta-pill">Transportation Design</span>
+        </div>
+        <div class="project-title-block">
+          <h1 style="font-size: 60px;">Cupra Proraptor <br><span>Amphibious</span><br>Motorcycle</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── PROJECT BODY ─── -->
+     <div class="project-body">
+      <div class="project-text">
+
+        <!-- Layout de dos columnas: texto + imagen abajo, y otra imagen a la derecha -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 0 0 40px 0; align-items: start;">
+          <div>
+            <h2>Contextualisation</h2>
+            <p>The technological revolution has penetrated our lives faster than many can adapt. The sensations, experiences and entertainment offered by new technologies, social media and video games are causing people in search of adrenaline and new emotions to increase their demand for increasingly innovative and emotionally charged products.</p>
+            <p>This project focuses on designing a vehicle capable of moving across multiple terrains and environments, giving the user a freedom never seen before, and society a product of real utility and value. Jet skis are among the most fun and agile aquatic vehicles available, but they are rarely used in daily life and rarely form a personal bond with the user the way motorcycles do.</p>
+            
+            <img src="../images/proraptor-context1.png" alt="Proraptor contextual research 2" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; display: block; margin-top: 20px;"
+                 onerror="this.style.background='#111'; this.style.height='200px'">
+          </div>
+          <div>
+            <img src="../images/proraptor-context.png" alt="Proraptor contextual research" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; display: block;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+        </div>
+
+        <!-- Layout de dos columnas: The User + imagen -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 40px 0 0 0; align-items: start;">
+          <div>
+            <h2>The User</h2>
+            <p>The target user is shaped by three key elements: the principles and norms of contemporary society; the ideals and habits of their social circle, which belongs to the <strong>Generation Z</strong> environment; and their individual traits, experiences, and personal preferences.</p>
+            <p>This profile is a young person with academic and professional ambitions who values independence greatly. Freedom is a fundamental principle. They play video games, have a keen interest in new technologies — especially AI and IoT — and are athletic, enjoy adrenaline, and travel for experiences. They ride motorcycles and connect with others who share that passion.</p>
+          </div>
+          <div>
+            <img src="../images/proraptor-user.png" alt="Proraptor target user" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; display: block;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+        </div>
+
+        <h2>Sketch Development</h2>
+        
+        <!-- Imagen full width de bocetos con colores invertidos -->
+        <div style="margin: 24px 0 40px 0; width: 100%;">
+          <img src="../images/proraptor-bocetos.png" alt="Proraptor sketches" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='300px'">
+               <p>The concept evolved through iterative refinement, balancing aesthetic ambition with functional requirements. Early decisions focused on establishing a distinctive visual language — aggressive yet futuristic, inspired by both marine creatures and aerospace engineering.</p>
+               <p>One of the key turning points was the <strong>redesign of the front fairing</strong>, which originally exposed the front wheel. The decision to enclose the front wheel gave the motorcycle a more cohesive, aerodynamic silhouette — reinforcing its futuristic identity. This change also improved the vehicle's hydrodynamic profile for water transitions.</p>
+        </div>
+        
+        <!-- Layout de dos columnas: texto desarrollo + imagen -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; align-items: start;">
+          <div>
+            <h2>Development of the Concept</h2>
+            <p>A critical functional challenge was managing heat buildup around the front wheel area, particularly when transitioning between land and water modes. An integrated <strong>cooling system</strong> was developed, using ventilation channels embedded within the fairing to regulate temperature without compromising the sealed design required for water operation.</p>
+            <p>Other refinements included adjusting the <strong>rear tyre thickness</strong> — balancing durability on rough terrain with reduced weight for hydrofoil lift. The exhaust system was also repositioned to prevent water ingestion during amphibious transitions. Each decision was validated through digital simulations and physical prototyping, ensuring the final design is as functional as it is expressive.</p>
+          </div>
+          <div>
+            <img src="../images/proraptor-desarrollo.png" alt="Proraptor development process" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px;"
+                 onerror="this.style.background='#111'; this.style.height='300px'">
+          </div>
+        </div>
+
+        <h2>Final Concept</h2>
+        
+        <!-- Layout de dos columnas: 30% texto / 70% carrusel -->
+        <div style="display: grid; grid-template-columns: 30% 70%; gap: 48px; margin: 30px 0 40px 0; align-items: start;">
+          <div>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin: 0;">
+              The key aspect of the project, and what makes Proraptor unique, is its three integrated driving modes, which allow it to master and transition seamlessly from one environment to another. The aquatic systems are powered both pneumatically and by a hybrid electric motor.
+            </p>
+            <img src="../images/proraptor-modos.png" alt="Proraptor modes diagram" 
+                 style="width: 100%; height: auto; display: block; margin: 0;"
+                 onerror="this.style.background='#111'; this.style.height='150px'">
+          </div>
+          
+          <!-- Columna derecha: carrusel de imágenes -->
+          <div style="position: relative; overflow: hidden; border-radius: 8px;">
+            <div id="carouselImages" style="display: flex; transition: transform 0.5s ease; width: 100%;">
+              <img src="../images/proraptor-final.png" alt="Road Mode" style="width: 100%; flex-shrink: 0; display: block;">
+              <img src="../images/proraptor-final1.png" alt="Flotation Mode" style="width: 100%; flex-shrink: 0; display: block;">
+              <img src="../images/proraptor-final2.png" alt="Hydrofoil Mode" style="width: 100%; flex-shrink: 0; display: block;">
+            </div>
+            
+            <button id="carouselPrev" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 12px 16px; cursor: pointer; border-radius: 4px; font-size: 18px; z-index: 10;">❮</button>
+            <button id="carouselNext" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 12px 16px; cursor: pointer; border-radius: 4px; font-size: 18px; z-index: 10;">❯</button>
+            
+            <div style="position: absolute; bottom: 15px; left: 0; right: 0; display: flex; justify-content: center; gap: 12px; z-index: 10;">
+              <span class="carouselDot" data-index="0" style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%; cursor: pointer; opacity: 1;"></span>
+              <span class="carouselDot" data-index="1" style="width: 10px; height: 10px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; opacity: 0.6;"></span>
+              <span class="carouselDot" data-index="2" style="width: 10px; height: 10px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; opacity: 0.6;"></span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mode Diagram con iluminación sincronizada -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin: 48px 0;">
+          <div id="modeBox1" class="mode-box" data-mode="0" style="padding: 28px 24px; background: var(--bg); transition: all 0.3s ease; border: 2px solid transparent;">
+            <div class="mode-num">01</div>
+            <div class="mode-title">Road Mode</div>
+            <div class="mode-desc">The user rides on land normally. The hydrofoils and flotation system are fully retracted into the fairing for optimal aerodynamics and a clean visual profile.</div>
+          </div>
+          <div id="modeBox2" class="mode-box" data-mode="1" style="padding: 28px 24px; background: var(--bg); transition: all 0.3s ease; border: 2px solid transparent;">
+            <div class="mode-num">02</div>
+            <div class="mode-title">Flotation Mode</div>
+            <div class="mode-desc">Upon water entry, pneumatic lateral floats deploy automatically — inflated like bellows from nylon-urethane — providing initial stability. The rear wheel propels via its specially designed rim.</div>
+          </div>
+          <div id="modeBox3" class="mode-box" data-mode="2" style="padding: 28px 24px; background: var(--bg); transition: all 0.3s ease; border: 2px solid transparent;">
+            <div class="mode-num">03</div>
+            <div class="mode-title">Hydrofoil Mode</div>
+            <div class="mode-desc">Once speed is reached, retractable hydrofoils generate hydrodynamic lift, elevating the motorcycle above the water surface. The C-Pod dual contra-rotating propeller provides thrust and precision.</div>
+          </div>
+        </div>
+
+        <!-- Imagen full width ciclo -->
+        <div style="margin: 0 0 40px 0; width: 100%; line-height: 0;">
+          <img src="../images/proraptor-ciclo.png" alt="Proraptor usage cycle" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='300px'">
+        </div>
+        <!-- NUEVAS IMÁGENES FULL WIDTH DESPUÉS DE PRORAPTOR-CICLO -->
+        <div style="margin: 20px 0 20px 0; width: 100%; line-height: 0;">
+          <img src="../images/proraptor-referenciabote.png" alt="Proraptor boat reference" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='300px'">
+        </div>
+
+        <div style="margin: 20px 0 40px 0; width: 100%; line-height: 0;">
+          <img src="../images/proraptor-detallescamas.png" alt="Proraptor scale details" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='300px'">
+        </div>
+        <h2>Technical Engineering</h2>
+        <div class="feature-row">
+          <div class="feature-box">
+            <h4>Hydrofoil System</h4>
+            <p>Based on Candela C-8 proportions. Retractable T-shaped foils inspired by Rinspeed Splash hide within the fairing when not in use. Reference dimensions: 1300mm / 1950mm / 1650mm foil geometry.</p>
+          </div>
+          <div class="feature-box">
+            <h4>C-Pod Propulsion</h4>
+            <p>Dual contra-rotating propeller inspired by the Candela C-8's C-Pod motor. Real-time sensors adjust each propeller's speed independently for trajectory correction and stability at high speed.</p>
+          </div>
+          <div class="feature-box">
+            <h4>Hybrid Drivetrain</h4>
+            <p>Twin-cylinder inline combustion engine assisted by an electric motor. The electric motor also powers the C-Pod propeller in hydrofoil mode, creating a seamless hybrid system.</p>
+          </div>
+          <div class="feature-box">
+            <h4>Smart Fairing</h4>
+            <p>Front wheel fairing acts as a hydrodynamic "prow," protecting brake discs from seawater corrosion. Adaptive scales open automatically based on disc temperature and speed — similar to the Mercedes-Benz Vision AVTR system.</p>
+          </div>
+        </div>
+
+       
+         <h2 style="margin-bottom: 35px;">Proraptor — The Concept</h2>
+        
+        <!-- Layout de dos columnas -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 120px; margin: 0; align-items: start;">
+          <div>
+            <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px;">
+             <strong>Proraptor</strong> unites myth, technology and nature. The name references Prometheus (fire stealer, technology) and the Velociraptor (agility, freedom). The orange represents the fire of Olympus; the black represents elegance and power. The logo — a stylised torch — expresses energy and innovation. 
+            </p>
+            <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px;">
+             The name <strong>Proraptor</strong> is a deliberate fusion of two powerful symbols: <strong>Prometheus</strong>, the Titan who stole fire from the gods and gave technology to humanity — representing innovation, courage and the spark of creation. And <strong>Velociraptor</strong>, an agile, intelligent predator — representing speed, freedom and instinct.
+            </p>
+            <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5; margin-bottom: 0;">
+              The colour palette reinforces this duality: <strong>orange</strong> echoes the flame of Olympus — energy, danger, passion. <strong>Black</strong> represents elegance, power and the unknown depths.
+            </p>
+          </div>
+          <div>
+            <img src="../images/proraptor-significado.png" alt="Proraptor meaning and symbolism" 
+                 style="width: 85%; height: auto; filter: invert(100%); display: block;">
+          </div>
+        </div>
+
+        <!-- Imagen full width -->
+        <div style="margin: 0; width: 100%;">
+          <img src="../images/proraptor-identidad.png" alt="Proraptor brand identity" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='300px'">
+        </div>
+
+        <h2>Proraptor App</h2>
+        <p>
+          A companion app offers real-time vehicle information, mode switching (land/water), navigation and marine route planning, simulation, and community connectivity — uniting vehicle and rider into a single ecosystem.
+        </p>
+
+        <h2>CMF Strategy — Four Flame Identities</h2>
+        <p>
+          Inspired by the CUPRA DarkRebel, each colour proposal represents a type of flame — not just a colour, but a personality, aesthetic sensation and symbolic universe:
+        </p>
+        
+        <!-- GALERÍA CMF: 2 columnas x 2 filas -->
+                <!-- GALERÍA CMF: 2 columnas x 2 filas con HOVER -->
+        <div class="cmf-gallery-new">
+          <div class="cmf-item-new" onclick="openCMFDetailLightbox(0)">
+            <img src="../images/proraptor-inferno.png" alt="INFERNO">
+            <div class="cmf-label-new">INFERNO</div>
+          </div>
+          
+          <div class="cmf-item-new" onclick="openCMFDetailLightbox(1)">
+            <img src="../images/proraptor-valyrio.png" alt="VALYRIO">
+            <div class="cmf-label-new">VALYRIO</div>
+          </div>
+          
+          <div class="cmf-item-new" onclick="openCMFDetailLightbox(2)">
+            <img src="../images/proraptor-fatuo.png" alt="FATUO">
+            <div class="cmf-label-new">FATUO</div>
+          </div>
+          
+          <div class="cmf-item-new" onclick="openCMFDetailLightbox(3)">
+            <img src="../images/proraptor-draco.png" alt="DRACO">
+            <div class="cmf-label-new">DRACO</div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="project-sidebar-info">
+        <div class="info-block">
+          <h4>Project Details</h4>
+          <div class="info-row"><span class="key">Year</span><span class="val">2024–2025</span></div>
+          <div class="info-row"><span class="key">Duration</span><span class="val">8 months</span></div>
+          <div class="info-row"><span class="key">Type</span><span class="val">Final Degree (TFG)</span></div>
+          <div class="info-row"><span class="key">Client</span><span class="val">SEAT / CUPRA</span></div>
+        </div>
+        <div class="info-block">
+          <h4>Team</h4>
+          <div class="info-row"><span class="key">Designer</span><span class="val">Antonio G. F.</span></div>
+          <div class="info-row"><span class="key">Director</span><span class="val">J.R. Méndez S.</span></div>
+          <div class="info-row"><span class="key">Co-director</span><span class="val">R. Martínez R.</span></div>
+        </div>
+        <div class="info-block">
+          <h4>Tools Used</h4>
+          <div class="info-row"><span class="key">3D</span><span class="val">Rhinoceros / Blender</span></div>
+          <div class="info-row"><span class="key">Design</span><span class="val">Illustrator / PS</span></div>
+          <div class="info-row"><span class="key">AI</span><span class="val">Vizcom / OpenAI</span></div>
+          <div class="info-row"><span class="key">Layout</span><span class="val">InDesign</span></div>
+        </div>
+        <div class="info-block">
+          <h4>Keywords</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;letter-spacing:0.1em;">AMPHIBIOUS</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;letter-spacing:0.1em;">HYDROFOIL</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;letter-spacing:0.1em;">MOTORCYCLE</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;letter-spacing:0.1em;">HYBRID</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;letter-spacing:0.1em;">CUPRA</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;letter-spacing:0.1em;">GEN-Z</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;letter-spacing:0.1em;">CMF</span>
+          </div>
+        </div>
+
+        <a href="../contact.html" class="btn btn-primary" style="display:block;text-align:center;">Discuss this project →</a>
+      </div>
+    </div>
+    
+    <div style="margin: 40px 48px 20px 48px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px;">GALLERY</div>
+      <h2 style="font-family: var(--font-head); font-size: 20px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text);">Final panels</h2>
+    </div>
+ 
+    <!-- ─── PANELES TÉCNICOS CON GALERÍA ─── -->
+<div class="gallery-grid cols-3" style="margin:0 48px 120px;">
+  <div class="panel-item" onclick="openPanelLightbox(0)">
+    <img src="../images/proraptor-panel1.jpg" alt="Panel 01">
+    <div class="panel-label">01 // Contextualización y Concepto</div>
+  </div>
+  <div class="panel-item" onclick="openPanelLightbox(1)">
+    <img src="../images/proraptor-panel2.jpg" alt="Panel 02">
+    <div class="panel-label">02 // Ciclo de Uso e Identidad</div>
+  </div>
+  <div class="panel-item" onclick="openPanelLightbox(2)">
+    <img src="../images/proraptor-panel3.jpg" alt="Panel 03">
+    <div class="panel-label">03 // Desarrollo y CMF</div>
+  </div>
+</div>
+
+        <!-- ─── IMAGE GALLERY FINAL CON LIGHTBOX NAVEGABLE ─── -->
+           <!-- Imagen full width del hero al inicio de la galería -->
+     <div class="gallery-grid cols-1" style="margin:0 48px 16px;">
+      <img src="../images/proraptor-herogallery.jpg" alt="Proraptor Hero Gallery"
+           style="width: 100%; height: auto; cursor: pointer;" onclick="openFinalLightbox(0)"
+           onerror="this.style.background='#111'; this.style.height='300px'">
+    </div>
+    
+    <div class="gallery-grid cols-2" style="margin:0 48px 16px;">
+      <img src="../images/proraptor-front.jpg" alt="Proraptor Front View"
+           style="height:360px; cursor: pointer;" onclick="openFinalLightbox(1)"
+           onerror="this.style.background='#111'; this.style.height='360px'">
+      <img src="../images/proraptor-side.jpg" alt="Proraptor Side View"
+           style="height:360px; cursor: pointer;" onclick="openFinalLightbox(2)"
+           onerror="this.style.background='#111'; this.style.height='360px'">
+    </div>
+    <div class="gallery-grid cols-3" style="margin:0 48px 64px;">
+      <img src="../images/proraptor-water1.jpg" alt="Proraptor Water Mode"
+           style="height:260px; cursor: pointer;" onclick="openFinalLightbox(3)"
+           onerror="this.style.background='#111'; this.style.height='260px'">
+      <img src="../images/proraptor-water2.jpg" alt="Proraptor Hydrofoil"
+           style="height:260px; cursor: pointer;" onclick="openFinalLightbox(4)"
+           onerror="this.style.background='#111'; this.style.height='260px'">
+      <img src="../images/proraptor-night.jpg" alt="Proraptor Night Scene"
+           style="height:260px; cursor: pointer;" onclick="openFinalLightbox(5)"
+           onerror="this.style.background='#111'; this.style.height='260px'">
+    </div>
+
+    <!-- Nav between projects -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
+      <div style="padding:32px 48px;background:var(--bg);">
+        <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div>
+        <a href="../work.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;transition:color 0.3s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← All Work</a>
+      </div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;">
+        <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div>
+        <a href="containers.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;transition:color 0.3s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">800/1100L Containers →</a>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-copy">© 2025 Antonio García Fernández</span>
+      <div class="footer-links">
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<!-- LIGHTBOX CON NAVEGACIÓN -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightbox()">✕ CLOSE</div>
+  <div class="lightbox-container">
+    <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage(event)">❮</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage(event)">❯</button>
+  </div>
+  <div id="lightbox-caption"></div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+// ============ GALERÍA 1: PANELES TÉCNICOS (3 imágenes) ============
+const panelGallery = [
+  { src: '../images/proraptor-panel1.jpg', caption: 'Panel 01 — Contextualización y Concepto' },
+  { src: '../images/proraptor-panel2.jpg', caption: 'Panel 02 — Ciclo de Uso e Identidad' },
+  { src: '../images/proraptor-panel3.jpg', caption: 'Panel 03 — Desarrollo y CMF' }
+];
+
+let currentPanelGallery = [];
+let currentPanelIndex = 0;
+
+// ============ GALERÍA 2: CMF (5 imágenes) ============
+const cmfGallery = [
+  { src: '../images/proraptor-inferno.png', caption: 'INFERNO — Dark & Aggressive' },
+  { src: '../images/proraptor-valyrio.png', caption: 'VALYRIO — Green & Mystic' },
+  { src: '../images/proraptor-draco.png', caption: 'DRACO — Copper & Power' },
+  { src: '../images/proraptor-fatuo.png', caption: 'FATUO — Purple & Mystery' },
+  { src: '../images/proraptor-frenesi.png', caption: 'FRENESÍ — Orange & Energy' }
+];
+
+let currentCMFGallery = [];
+let currentCMFIndex = 0;
+
+// ============ GALERÍA 3: FINAL (6 imágenes) ============
+const finalGallery = [
+  { src: '../images/proraptor-herogallery.jpg', caption: 'Proraptor — Hero Gallery' },
+  { src: '../images/proraptor-front.jpg', caption: 'Proraptor — Front View' },
+  { src: '../images/proraptor-side.jpg', caption: 'Proraptor — Side View' },
+  { src: '../images/proraptor-water1.jpg', caption: 'Proraptor — Water Mode' },
+  { src: '../images/proraptor-water2.jpg', caption: 'Proraptor — Hydrofoil Mode' },
+  { src: '../images/proraptor-night.jpg', caption: 'Proraptor — Night Scene' }
+];
+
+let currentFinalGallery = [];
+let currentFinalIndex = 0;
+
+// ============ FUNCIONES PARA ABRIR CADA GALERÍA ============
+function openPanelLightbox(index) {
+  // Limpiar las otras galerías
+  currentCMFGallery = [];
+  currentFinalGallery = [];
+  
+  currentPanelGallery = panelGallery;
+  currentPanelIndex = index;
+  
+  const lb = document.getElementById('lightbox');
+  const imgElement = document.getElementById('lightbox-img');
+  const captionElement = document.getElementById('lightbox-caption');
+  const counterElement = document.getElementById('lightbox-counter');
+  
+  imgElement.src = currentPanelGallery[index].src;
+  captionElement.textContent = currentPanelGallery[index].caption;
+  counterElement.textContent = `${index + 1} / ${currentPanelGallery.length}`;
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openCMFLightbox(index) {
+  // Limpiar las otras galerías
+  currentPanelGallery = [];
+  currentFinalGallery = [];
+  
+  currentCMFGallery = cmfGallery;
+  currentCMFIndex = index;
+  
+  const lb = document.getElementById('lightbox');
+  const imgElement = document.getElementById('lightbox-img');
+  const captionElement = document.getElementById('lightbox-caption');
+  const counterElement = document.getElementById('lightbox-counter');
+  
+  imgElement.src = currentCMFGallery[index].src;
+  captionElement.textContent = currentCMFGallery[index].caption;
+  counterElement.textContent = `${index + 1} / ${currentCMFGallery.length}`;
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openFinalLightbox(index) {
+  // Limpiar las otras galerías
+  currentPanelGallery = [];
+  currentCMFGallery = [];
+  
+  currentFinalGallery = finalGallery;
+  currentFinalIndex = index;
+  
+  const lb = document.getElementById('lightbox');
+  const imgElement = document.getElementById('lightbox-img');
+  const captionElement = document.getElementById('lightbox-caption');
+  const counterElement = document.getElementById('lightbox-counter');
+  
+  imgElement.src = currentFinalGallery[index].src;
+  captionElement.textContent = currentFinalGallery[index].caption;
+  counterElement.textContent = `${index + 1} / ${currentFinalGallery.length}`;
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// ============ FUNCIONES DE NAVEGACIÓN ============
+function nextLightboxImage(event) {
+  if (event) event.stopPropagation();
+  
+  // Prioridad: CMF Detail, luego Panel, luego CMF original, luego Final
+  if (currentCMFDetailGallery.length > 0) {
+    currentCMFDetailIndex = (currentCMFDetailIndex + 1) % currentCMFDetailGallery.length;
+    document.getElementById('lightbox-img').src = currentCMFDetailGallery[currentCMFDetailIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentCMFDetailGallery[currentCMFDetailIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentCMFDetailIndex + 1} / ${currentCMFDetailGallery.length}`;
+  }
+  else if (currentPanelGallery.length > 0) {
+    currentPanelIndex = (currentPanelIndex + 1) % currentPanelGallery.length;
+    document.getElementById('lightbox-img').src = currentPanelGallery[currentPanelIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentPanelGallery[currentPanelIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentPanelIndex + 1} / ${currentPanelGallery.length}`;
+  }
+  else if (currentCMFGallery.length > 0) {
+    currentCMFIndex = (currentCMFIndex + 1) % currentCMFGallery.length;
+    document.getElementById('lightbox-img').src = currentCMFGallery[currentCMFIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentCMFGallery[currentCMFIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentCMFIndex + 1} / ${currentCMFGallery.length}`;
+  }
+  else if (currentFinalGallery.length > 0) {
+    currentFinalIndex = (currentFinalIndex + 1) % currentFinalGallery.length;
+    document.getElementById('lightbox-img').src = currentFinalGallery[currentFinalIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentFinalGallery[currentFinalIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentFinalIndex + 1} / ${currentFinalGallery.length}`;
+  }
+}
+
+function prevLightboxImage(event) {
+  if (event) event.stopPropagation();
+  
+  // Prioridad: CMF Detail, luego Panel, luego CMF original, luego Final
+  if (currentCMFDetailGallery.length > 0) {
+    currentCMFDetailIndex = (currentCMFDetailIndex - 1 + currentCMFDetailGallery.length) % currentCMFDetailGallery.length;
+    document.getElementById('lightbox-img').src = currentCMFDetailGallery[currentCMFDetailIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentCMFDetailGallery[currentCMFDetailIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentCMFDetailIndex + 1} / ${currentCMFDetailGallery.length}`;
+  }
+  else if (currentPanelGallery.length > 0) {
+    currentPanelIndex = (currentPanelIndex - 1 + currentPanelGallery.length) % currentPanelGallery.length;
+    document.getElementById('lightbox-img').src = currentPanelGallery[currentPanelIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentPanelGallery[currentPanelIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentPanelIndex + 1} / ${currentPanelGallery.length}`;
+  }
+  else if (currentCMFGallery.length > 0) {
+    currentCMFIndex = (currentCMFIndex - 1 + currentCMFGallery.length) % currentCMFGallery.length;
+    document.getElementById('lightbox-img').src = currentCMFGallery[currentCMFIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentCMFGallery[currentCMFIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentCMFIndex + 1} / ${currentCMFGallery.length}`;
+  }
+  else if (currentFinalGallery.length > 0) {
+    currentFinalIndex = (currentFinalIndex - 1 + currentFinalGallery.length) % currentFinalGallery.length;
+    document.getElementById('lightbox-img').src = currentFinalGallery[currentFinalIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentFinalGallery[currentFinalIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentFinalIndex + 1} / ${currentFinalGallery.length}`;
+  }
+}
+
+function closeLightbox(event) {
+  if (event && (event.target.classList?.contains('lightbox-nav') || 
+                event.target.closest?.('.lightbox-nav'))) {
+    return;
+  }
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  
+  // Limpiar todas las galerías al cerrar
+  currentPanelGallery = [];
+  currentCMFGallery = [];
+  currentFinalGallery = [];
+  currentCMFDetailGallery = [];
+}
+
+// Cerrar con tecla ESC y navegar con flechas
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') prevLightboxImage(e);
+  if (e.key === 'ArrowRight') nextLightboxImage(e);
+});
+
+// ============ CARRUSEL SIMPLE ============
+setTimeout(function() {
+  const images = document.getElementById('carouselImages');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  
+  if (!images) {
+    console.log('Carrusel no encontrado');
+    return;
+  }
+  
+  const imageElements = images.querySelectorAll('img');
+  let currentIndex = 0;
+  const total = imageElements.length;
+  
+  function update(index) {
+    images.style.transform = 'translateX(-' + (index * 100) + '%)';
+    
+    // Actualizar dots
+    document.querySelectorAll('.carouselDot').forEach(function(dot, i) {
+      dot.style.background = i === index ? '#F4951D' : 'rgba(255,255,255,0.5)';
+    });
+    
+    // Actualizar bordes de los modos
+    for (let i = 1; i <= 3; i++) {
+      const box = document.getElementById('modeBox' + i);
+      if (box) {
+        if (i - 1 === index) {
+          box.style.borderColor = '#F4951D';
+          box.style.boxShadow = '0 0 12px rgba(244,149,29,0.4)';
+        } else {
+          box.style.borderColor = 'transparent';
+          box.style.boxShadow = 'none';
+        }
+      }
+    }
+    
+    currentIndex = index;
+  }
+  
+  if (prevBtn) prevBtn.onclick = function() { 
+    update((currentIndex - 1 + total) % total); 
+  };
+  if (nextBtn) nextBtn.onclick = function() { 
+    update((currentIndex + 1) % total); 
+  };
+  
+  update(0);
+}, 500);
+
+// ============ GALERÍA CMF DETALLADA (4 imágenes para lightbox) ============
+const cmfDetailGallery = [
+  { src: '../images/proraptor-infernotext.png', caption: 'INFERNO — Dark & Aggressive — Technical details' },
+  { src: '../images/proraptor-valyriotext.png', caption: 'VALYRIO — Green & Mystic — Technical details' },
+  { src: '../images/proraptor-fatuotext.png', caption: 'FATUO — Purple & Mystery — Technical details' },
+  { src: '../images/proraptor-dracotext.png', caption: 'DRACO — Copper & Power — Technical details' }
+];
+
+let currentCMFDetailGallery = [];
+let currentCMFDetailIndex = 0;
+
+function openCMFDetailLightbox(index) {
+  // Limpiar otras galerías
+  currentPanelGallery = [];
+  currentFinalGallery = [];
+  currentCMFGallery = [];
+  
+  currentCMFDetailGallery = cmfDetailGallery;
+  currentCMFDetailIndex = index;
+  
+  const lb = document.getElementById('lightbox');
+  const imgElement = document.getElementById('lightbox-img');
+  const captionElement = document.getElementById('lightbox-caption');
+  const counterElement = document.getElementById('lightbox-counter');
+  
+  imgElement.src = currentCMFDetailGallery[index].src;
+  captionElement.textContent = currentCMFDetailGallery[index].caption;
+  counterElement.textContent = `${index + 1} / ${currentCMFDetailGallery.length}`;
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+</script>
+
+</body>
+</html>

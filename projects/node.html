@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08 // NODE ENGINEERING CLUB — ASKET ASV — Antonio García Fernández</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+    .feature-card {
+      padding: 28px;
+      background: var(--bg);
+    }
+    .feature-card h4 {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .specs-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin: 30px 0;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .spec-item {
+      flex: 1;
+      min-width: 120px;
+    }
+    .spec-label {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .spec-value {
+      font-family: var(--font-head);
+      font-size: 28px;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .spec-unit {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+<div class="cursor"></div><div class="cursor-follower"></div>
+<button class="mobile-menu-btn"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><rect width="20" height="1.5" fill="currentColor"/><rect y="6" width="14" height="1.5" fill="currentColor"/><rect y="12" width="20" height="1.5" fill="currentColor"/></svg></button>
+<nav class="mobile-nav"><button class="mobile-nav-close">✕ CLOSE</button><a href="../index.html">Home</a><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../contact.html">Contact</a></nav>
+<div class="site-wrap">
+  <aside class="sidebar">
+    <a href="../index.html" class="sidebar-logo">AG·FZ</a>
+    <nav class="sidebar-nav">
+      <a href="../index.html">00 // Home</a><a href="../work.html" class="active">01 // Work</a><a href="../about.html">02 // About</a><a href="../cv.html">03 // CV</a><a href="../contact.html">04 // Contact</a>
+    </nav>
+    <div class="sidebar-coords">43.3623°N<br>8.4115°W<br>ESP</div>
+  </aside>
+  <main class="main-content">
+    <div class="topbar"><span class="topbar-title">08 // NODE ENGINEERING CLUB — ASKET ASV</span><div class="topbar-status"><div class="status-dot"></div><span class="topbar-meta">2025–2026</span></div></div>
+    <a href="../work.html" class="back-link">← Back to All Projects</a>
+
+    <div class="project-hero">
+      <img src="../images/asket-hero.jpg" alt="Node Engineering Club — Asket ASV" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,#0a1a3a,#0d1a3d)'">
+      <div class="project-hero-overlay"></div>
+      <div class="project-hero-content">
+        <div class="project-meta-row">
+          <span class="meta-pill">08</span>
+          <span class="meta-pill">2025–2026</span>
+          <span class="meta-pill">Node Engineering Club</span>
+          <span class="meta-pill">Open-source · ASV · Njord 2026</span>
+        </div>
+        <div class="project-title-block"><h1>Asket ASV<br><span>Autonomous</span><br>Surface Vessel</h1></div>
+      </div>
+    </div>
+
+    <div class="project-body">
+      <div class="project-text">
+        <h2>Project Overview</h2>
+        <p>Asket is an Autonomous Surface Vessel (ASV) developed by <strong>Node Engineering Club</strong>, an open‑source engineering community building autonomous robots. The vessel is specifically designed for the Njord 2026 physical autonomous challenge — a competition demanding robust navigation, obstacle avoidance, and autonomous mission execution in real‑world water environments.</p>
+        
+        <p>The team comprises <strong>13–15 active members</strong> from various engineering disciplines, working collaboratively on hardware, software, and mechanical systems. Asket represents the club's commitment to accessible, open‑source autonomy.</p>
+
+        <div class="specs-list">
+          <div class="spec-item">
+            <div class="spec-label">Team size</div>
+            <div class="spec-value">13 – 15</div>
+            <div class="spec-unit">members</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Competition</div>
+            <div class="spec-value">Njord 2026</div>
+            <div class="spec-unit">physical challenge</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Hull</div>
+            <div class="spec-value">3D‑printed</div>
+            <div class="spec-unit">custom design</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Role</div>
+            <div class="spec-value">Exterior Design</div>
+            <div class="spec-unit">head of</div>
+          </div>
+        </div>
+
+        <h2>My Role — Head of Exterior Design</h2>
+        <p>As Head of Exterior Design, my responsibility was to evolve the previous year's vessel model into a more capable, refined, and visually compelling platform.</p>
+        <p> The key objectives were:</p>
+        <ul style="color: var(--text-muted); font-size: 15px; line-height: 1.8; margin-left: 20px; margin-bottom: 20px;">
+          <li><strong>Integrate radar systems</strong> into the forward section of the hull — creating dedicated housing for sensors without compromising aerodynamics.</li>
+          <li><strong>Flatten the deck platform</strong> to provide a more stable and accessible surface for mounting electronic components, batteries, and navigation systems.</li>
+          <li><strong>Improve interior accessibility</strong> for motor and component placement — easier maintenance and faster iteration during testing.</li>
+          <li><strong>Enhance aesthetic and visual language</strong> — giving the vessel a sharper, more aggressive silhouette that reflects its performance‑oriented purpose.</li>
+        </ul>
+
+        <!-- Layout de dos columnas para imagen y texto -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 40px 0; align-items: start;">
+          <div>
+            <img src="../images/asket-hull.jpg" alt="Asket ASV hull design" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+          <div>
+            <h2>Hull Redesign</h2>
+            <p>The original hull geometry was functional but limited in both sensor integration and internal space. I led the redesign focusing on three critical areas:</p>
+            <p><strong>Forward radar integration:</strong> The front section now features a dedicated, streamlined housing for radar and LiDAR sensors — improving detection range while maintaining a cohesive form language.</p>
+            <p><strong>Flattened deck platform:</strong> By re‑profiling the upper surface, we created a more stable platform for component mounting, reducing the risk of water ingress and simplifying the assembly process.</p>
+            <p><strong>Improved accessibility:</strong> The new hull geometry includes larger hatches and repositioned structural elements, allowing the team to access motors, wiring, and control systems without disassembling the entire vessel.</p>
+          </div>
+        </div>
+
+                  <!-- Layout de dos columnas: Visual Identity + imagen invertida -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 40px 0; align-items: start;">
+          <div>
+            <h2>Visual Identity & Aerodynamics</h2>
+            <p>The previous iteration had a utilitarian appearance that didn't reflect the technological sophistication of the project. I introduced a <strong>sharper, more angular visual language</strong> — inspired by stealth naval vessels and high‑performance autonomous drones.</p>
+            <p>The redesigned hull features faceted surfaces that break up reflections on water, improving visual tracking during autonomous missions. The colour scheme remains minimal (matte black with orange accents — aligning with Node Engineering Club's identity), reducing glare and emphasising the vessel's technological character.</p>
+          </div>
+          <div>
+            <img src="../images/node-sketches.png" alt="Node ASV sketches and development" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; display: block; filter: invert(100%);"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+        </div>
+         <!-- Imagen full width invertida debajo -->
+        <div style="margin: 0 0 40px 0; width: 100%; line-height: 0;">
+          <img src="../images/node-sketches2.png" alt="Node ASV sketches development 2" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='300px'">
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>Radar Integration</h4>
+            <p>Dedicated forward housing for LiDAR and radar sensors — integrated into the hull's structural design without protruding elements that would increase drag.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Platform Stability</h4>
+            <p>Redesigned deck surface with reinforced mounting points for electronics, batteries, and navigation systems — minimising vibration during high‑speed manoeuvres.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Interior Accessibility</h4>
+            <p>Larger access hatches and optimised internal volume — motor and component replacement now possible without full disassembly.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Aesthetic Refresh</h4>
+            <p>Sharper, more aggressive silhouette — faceted surfaces and matte finish improve both visual presence and on‑water tracking.</p>
+          </div>
+        </div>
+
+        <h2>3D Printing & Manufacturing</h2>
+        <p>The hull is entirely <strong>3D‑printed using custom segmented geometry</strong>, optimised for large‑format FDM printers. The segmentation strategy balances print bed constraints with structural integrity, while the material selection (reinforced PETG) provides durability and water resistance.</p>
+        <p>Each section is printed with precision tolerance alignment features, ensuring seamless assembly. The design also incorporates integrated channels for cable management — reducing loose wiring inside the hull.</p>
+
+        <h2>Njord 2026 — The Challenge</h2>
+        <p>Njord 2026 is a physical autonomous competition requiring vessels to navigate complex water environments, avoid obstacles, and complete mission objectives without human intervention. Asket's redesign directly addresses the competition's demands:</p>
+        <ul style="color: var(--text-muted); font-size: 15px; line-height: 1.8; margin-left: 20px;">
+          <li>Improved sensor placement for 360° obstacle detection.</li>
+          <li>Stable platform for GPS and IMU systems — critical for precise navigation.</li>
+          <li>Reduced drag coefficient for faster transit between waypoints.</li>
+          <li>Modular interior allowing rapid reconfiguration between test runs.</li>
+        </ul>
+      </div>
+
+      <div class="project-sidebar-info">
+        <div class="info-block"><h4>Project Details</h4>
+          <div class="info-row"><span class="key">Year</span><span class="val">2025–2026</span></div>
+          <div class="info-row"><span class="key">Team</span><span class="val">13–15 members</span></div>
+          <div class="info-row"><span class="key">Role</span><span class="val">Head of Exterior Design</span></div>
+          <div class="info-row"><span class="key">Client</span><span class="val">Node Engineering Club</span></div>
+          <div class="info-row"><span class="key">Competition</span><span class="val">Njord 2026</span></div>
+        </div>
+        <div class="info-block"><h4>My Contributions</h4>
+          <div class="info-row"><span class="key">01</span><span class="val">Radar integration (front hull)</span></div>
+          <div class="info-row"><span class="key">02</span><span class="val">Flattened deck platform</span></div>
+          <div class="info-row"><span class="key">03</span><span class="val">Improved interior accessibility</span></div>
+          <div class="info-row"><span class="key">04</span><span class="val">Visual language & aerodynamics</span></div>
+        </div>
+        <div class="info-block"><h4>Tools Used</h4>
+          <div class="info-row"><span class="key">3D</span><span class="val">Rhinoceros / Fusion 360</span></div>
+          <div class="info-row"><span class="key">Rendering</span><span class="val">Blender / KeyShot</span></div>
+          <div class="info-row"><span class="key">Slicing</span><span class="val">PrusaSlicer / Cura</span></div>
+        </div>
+        <div class="info-block"><h4>Keywords</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">ASV</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">AUTONOMOUS</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">3D PRINT</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">NJORD</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">OPEN-SOURCE</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">ROBOTICS</span>
+          </div>
+        </div>
+        <a href="../contact.html" class="btn btn-primary" style="display:block;text-align:center;">Discuss this project →</a>
+      </div>
+    </div>
+
+    <!-- Galería de imágenes -->
+    <div class="gallery-grid cols-2" style="margin:0 48px 64px;">
+      <img src="../images/asket-render1.jpg" alt="Asket ASV front view" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
+      <img src="../images/asket-render2.jpg" alt="Asket ASV side profile" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
+    </div>
+    <div class="gallery-grid cols-3" style="margin:0 48px 64px;">
+      <img src="../images/asket-radar.jpg" alt="Radar integration detail" style="height:260px;" onerror="this.style.background='#111';this.style.height='260px'">
+      <img src="../images/asket-hull-detail.jpg" alt="3D printed hull section" style="height:260px;" onerror="this.style.background='#111';this.style.height='260px'">
+      <img src="../images/asket-team.jpg" alt="Node Engineering Club team" style="height:260px;" onerror="this.style.background='#111';this.style.height='260px'">
+    </div>
+
+    <!-- Navegación entre proyectos -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
+      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="modules.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Module Design</a></div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="relief.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Relief Exercise →</a></div>
+    </div>
+
+    <footer>
+      <span class="footer-copy">© 2025 Antonio García Fernández</span>
+      <div class="footer-links">
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </footer>
+  </main>
+</div>
+<script src="../js/main.js"></script>
+</body>
+</html>

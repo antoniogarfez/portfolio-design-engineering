@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05 // 3D PRINT STRATEGY FOR USV — NAVANTIA — Antonio García Fernández</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Efecto hover para imágenes de galería */
+    .hover-zoom-container {
+      position: relative;
+      overflow: visible;
+      background: #111;
+      height: 320px;
+      cursor: zoom-in;
+    }
+    
+    .hover-zoom-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+    }
+    
+    .hover-zoom-container:hover img {
+      object-fit: contain;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) scale(1.02);
+      z-index: 100;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      background: #000;
+    }
+    
+    .gallery-grid {
+      overflow: visible !important;
+    }
+  </style>
+</head>
+<body>
+<div class="cursor"></div><div class="cursor-follower"></div>
+<button class="mobile-menu-btn"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><rect width="20" height="1.5" fill="currentColor"/><rect y="6" width="14" height="1.5" fill="currentColor"/><rect y="12" width="20" height="1.5" fill="currentColor"/></svg></button>
+<nav class="mobile-nav"><button class="mobile-nav-close">✕ CLOSE</button><a href="../index.html">Home</a><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../contact.html">Contact</a></nav>
+<div class="site-wrap">
+  <aside class="sidebar">
+    <a href="../index.html" class="sidebar-logo">AG·FZ</a>
+    <nav class="sidebar-nav">
+      <a href="../index.html">00 // Home</a><a href="../work.html" class="active">01 // Work</a><a href="../about.html">02 // About</a><a href="../cv.html">03 // CV</a><a href="../contact.html">04 // Contact</a>
+    </nav>
+    <div class="sidebar-coords">43.3623°N<br>8.4115°W<br>ESP</div>
+  </aside>
+  <main class="main-content">
+    <div class="topbar"><span class="topbar-title">05 // 3D PRINT STRATEGY FOR USV — NAVANTIA</span><div class="topbar-status"><div class="status-dot"></div><span class="topbar-meta">2024–2025</span></div></div>
+    <a href="../work.html" class="back-link">← Back to All Projects</a>
+        <div class="project-hero">
+      <img src="../images/navantia-thumb.png" alt="05 // 3D PRINT STRATEGY FOR USV — NAVANTIA" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a1a1a)'">
+      <div class="project-hero-overlay"></div>
+      
+      <!-- Logo de Navantia en esquina superior izquierda -->
+      <div style="position: absolute; top: 30px; right: 700px; z-index: 20;">
+        <img src="../images/navantia-logo.png" 
+             alt="Navantia Logo" 
+             style="height: 80px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
+             onerror="this.style.display='none'">
+      </div>
+      
+      <div class="project-hero-content">
+        <div class="project-meta-row"><span class="meta-pill">05</span><span class="meta-pill">2024–2025</span><span class="meta-pill">Navantia</span><span class="meta-pill">Naval / Defence</span></div>
+        <div class="project-title-block"><h1>3D Print<br><span>Strategy</span><br>Navantia USV</h1></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-text">
+        <h2>Project Overview</h2>
+        <p>Design and development of a 3D printing strategy for producing a large-scale USV (Unmanned Surface Vehicle) model using Navantia's industrial 7×3m 3D printing system.</p>
+        <h2>Engineering Challenge</h2>
+        <p>The brief required sectioning a full-size USV hull into printable segments that fit within three 7×3m print beds, while maintaining structural integrity and assembly precision. The approach proposed hydrofoil integration — adding retractable T-shaped foils to the vessel hull.</p>
+        <h2>3D Printing Strategy</h2>
+        <p>The hull was divided into <strong>6 main sections</strong>: Popa (stern), Centro (mid-section), Centro Motor (engine zone), Proa (bow), Antena (antenna), and Tapa Motor (motor cover). Each section was oriented vertically for optimal print strength.</p>
+        <p>Joining strategy used anchor points at the hydrofoils and upper hull seams, bonded with resin and structural adhesive. The antenna is attached with high-strength adhesive.</p>
+        <h2>Hydrofoil Addition</h2>
+        <p>Inspired by the Candela C-8, T-shaped hydrofoils were integrated into the design proposal, positioned based on reference data from a 7.7m Candela C-7 hydroboat (2400mm beam, 7700mm LOA). This proposed capability to evaluate hydrofoil integration for future USV development.</p>
+        <h2>Deliverables</h2>
+        <p>Complete sectioning plan across 3 print beds, structural joint design, reference engineering data, 3D assembly documentation, and presentation panels for Navantia's engineering team.</p>
+        </div>
+      <div class="project-sidebar-info">
+        <div class="info-block"><h4>Project Details</h4>
+          <div class="info-row"><span class="key">Year</span><span class="val">2024–2025</span></div>
+          <div class="info-row"><span class="key">Client</span><span class="val">Navantia</span></div>
+          <div class="info-row"><span class="key">Type</span><span class="val">Naval / Engineering</span></div>
+        </div>
+        <div class="info-block"><h4>Keywords</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;"><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">NAVANTIA</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">USV</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">3D PRINT</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">NAVAL</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">HYDROFOIL</span></div>
+        </div>
+        <a href="../contact.html" class="btn btn-primary" style="display:block;text-align:center;">Discuss this project →</a>
+</div>
+    </div>
+    
+    <!-- Galería con efecto hover usando CSS puro -->
+    <div class="gallery-grid cols-2" style="margin:0 48px 64px; overflow: visible;">
+      <div class="hover-zoom-container">
+        <img src="../images/navantia-parts.png" alt="Navantia parts sectioning">
+      </div>
+      <div class="hover-zoom-container">
+        <img src="../images/navantia-thumb.png" alt="Navantia USV model">
+      </div>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
+      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="thermal.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Thermal Emitters</a></div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="masks.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">3D Masks →</a></div>
+    </div>
+    <footer><span class="footer-copy">© 2025 Antonio García Fernández</span><div class="footer-links"><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div></footer>
+  </main>
+</div>
+<script src="../js/main.js"></script>
+</body>
+</html>

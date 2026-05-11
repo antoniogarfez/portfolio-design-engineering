@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03 // URBAN WASTE BINS 50, 60 & 120L — Antonio García Fernández</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Estilos para el layout de dos columnas dentro del texto */
+    .two-column-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin: 40px 0;
+      align-items: start;
+    }
+    
+    .text-column {
+      flex: 1;
+    }
+    
+    .image-column {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .image-column img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    
+    /* Estilos para paneles de la gamma */
+    .gamma-panel-item {
+      position: relative;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: #1a1a1a;
+      aspect-ratio: 4/3;
+      border-radius: 4px;
+    }
+    
+    .gamma-panel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+    }
+    
+    .gamma-panel-item:hover img {
+      transform: scale(1.04);
+    }
+    
+    .gamma-panel-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 12px;
+      font-family: var(--font-head);
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+      text-align: center;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      z-index: 10;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .gamma-panel-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-top: 4px;
+      display: block;
+    }
+    
+    /* Estilos para lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.96);
+      cursor: zoom-out;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+    
+    #lightbox.open {
+      display: flex !important;
+    }
+    
+    #lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    
+    #lightbox-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    
+    .lightbox-close {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.15em;
+    }
+    
+    @media (max-width: 768px) {
+      .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .image-column {
+        position: relative;
+        top: 0;
+      }
+      .gamma-panel-label {
+        font-size: 18px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="cursor"></div><div class="cursor-follower"></div>
+<button class="mobile-menu-btn"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><rect width="20" height="1.5" fill="currentColor"/><rect y="6" width="14" height="1.5" fill="currentColor"/><rect y="12" width="20" height="1.5" fill="currentColor"/></svg></button>
+<nav class="mobile-nav"><button class="mobile-nav-close">✕ CLOSE</button><a href="../index.html">Home</a><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../contact.html">Contact</a></nav>
+<div class="site-wrap">
+  <aside class="sidebar">
+    <a href="../index.html" class="sidebar-logo">AG·FZ</a>
+    <nav class="sidebar-nav">
+      <a href="../index.html">00 // Home</a><a href="../work.html" class="active">01 // Work</a><a href="../about.html">02 // About</a><a href="../cv.html">03 // CV</a><a href="../contact.html">04 // Contact</a>
+    </nav>
+    <div class="sidebar-coords">43.3623°N<br>8.4115°W<br>ESP</div>
+  </aside>
+  <main class="main-content">
+    <div class="topbar"><span class="topbar-title">03 // URBAN WASTE BINS 50, 60 & 120L</span><div class="topbar-status"><div class="status-dot"></div><span class="topbar-meta">2023–2024</span></div></div>
+    <a href="../work.html" class="back-link">← Back to All Projects</a>
+    <div class="project-hero">
+      <img src="../images/wastebin-thumb.jpg" alt="03 // URBAN WASTE BINS 50, 60 & 120L" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a1a1a)'">
+      <div class="project-hero-overlay"></div>
+            <!-- Logo de FrutoDS en esquina superior derecha -->
+      <div style="position: absolute; top: 30px; right: 300px; z-index: 20;">
+        <img src="../images/frutods-logo.png" 
+             alt="FrutoDS Logo" 
+             style="height: 160px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
+             onerror="this.style.display='none'">
+      </div>
+      <div class="project-hero-content">
+        <div class="project-meta-row"><span class="meta-pill">03</span><span class="meta-pill">2023–2024</span><span class="meta-pill">FrutoDS · Formato Verde</span><span class="meta-pill">Urban Furniture</span></div>
+        <div class="project-title-block"><h1>Urban Waste<br><span>Bins</span><br>50, 60 & 120L</h1></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-text">
+        <h2>Project Overview</h2>
+        <p>A family of urban waste bins in three capacities — 50L, 60L, and 120L — designed for public spaces, parks, and urban areas. Developed in collaboration with FrutoDS and Formato Verde.</p>
+        
+        <!-- Layout de dos columnas: Design Approach + imagen -->
+        <div class="two-column-layout">
+          <div class="text-column">
+            <h2>Design Approach</h2>
+            <p>The structure is elongated and narrow, meeting capacity requirements while minimising footprint in public thoroughfares. The design avoids occupying unnecessary space on sidewalks and public paths.</p>
+            <p>Fabricated through plastic injection moulding, the form language is clean and geometric, adaptable to different contexts: <strong>Cubo</strong> (cubic bins for urban plazas), <strong>Parque</strong> (park variants), and <strong>Urbanización</strong> (residential area variants).</p>
+          </div>
+          <div class="image-column">
+            <img src="../images/renders-bins.png" alt="Urban waste bins renders" onerror="this.style.background='#111'; this.style.height='300px'">
+          </div>
+        </div>
+        
+        <!-- Layout de dos columnas: Market Research + imagen -->
+        <div class="two-column-layout">
+          <div class="text-column">
+            <h2>Market Research</h2>
+            <p>An exhaustive competitive analysis was conducted, benchmarking 8+ manufacturers including Benito, Glasdon, FARO, Vestre, and others — covering form, material, capacity, mounting systems, and price points across the European urban furniture market.</p>
+          </div>
+          <div class="image-column">
+            <img src="../images/research-bins.png" alt="Market research documentation" onerror="this.style.background='#111'; this.style.height='300px'">
+          </div>
+        </div>
+         <div class="full-width-image" style="margin: 0; line-height: 0;">
+          <img src="../images/research-full.png" alt="Market research full analysis" style="display: block; width: 100%;">
+        </div>
+        <h2>Technical Deliverables</h2>
+        <p>Final deliverables included multi-view technical drawings with dimension callouts, 3D models in SolidWorks and Rhinoceros, rendered presentations, and competitive benchmarking report.</p>
+      </div>
+      
+      <div class="project-sidebar-info">
+        <div class="info-block"><h4>Project Details</h4>
+          <div class="info-row"><span class="key">Year</span><span class="val">2023–2024</span></div>
+          <div class="info-row"><span class="key">Client</span><span class="val">FrutoDS / Formato Verde</span></div>
+          <div class="info-row"><span class="key">Type</span><span class="val">Urban Furniture</span></div>
+        </div>
+        <div class="info-block"><h4>Keywords</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;"><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">URBAN</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">50L-120L</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">INJECTION</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">PARKS</span></div>
+        </div>
+        <a href="../contact.html" class="btn btn-primary" style="display:block;text-align:center;">Discuss this project →</a>
+      </div>
+    </div>
+    
+    <!-- Sección Final Gamma con 3 paneles -->
+    <div style="margin: 40px 48px 20px 48px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px;">PRODUCT RANGE</div>
+      <h2 style="font-family: var(--font-head); font-size: 20px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text);">Final Gamma</h2>
+    </div>
+    
+    <div class="gallery-grid cols-3" style="margin:0 48px 64px;">
+      <div class="gamma-panel-item" onclick="openLightbox('../images/wastebin-50l.png', '50 Litre Urban Waste Bin')">
+        <img src="../images/wastebin-50l.png" alt="50L Bin">
+        <div class="gamma-panel-label">50L<span class="gamma-panel-sub">LITRES</span></div>
+      </div>
+      <div class="gamma-panel-item" onclick="openLightbox('../images/wastebin-60l.png', '60 Litre Urban Waste Bin')">
+        <img src="../images/wastebin-60l.png" alt="60L Bin">
+        <div class="gamma-panel-label">60L<span class="gamma-panel-sub">LITRES</span></div>
+      </div>
+      <div class="gamma-panel-item" onclick="openLightbox('../images/wastebin-120l.png', '120 Litre Urban Waste Bin')">
+        <img src="../images/wastebin-120l.png" alt="120L Bin">
+        <div class="gamma-panel-label">120L<span class="gamma-panel-sub">LITRES</span></div>
+      </div>
+    </div>
+    
+    <!-- Imágenes finales de la galería -->
+    <div class="gallery-grid cols-2" style="margin:0 48px 64px;">
+      <img src="../images/wastebin-thumb.jpg" alt="Waste bin CAD render" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
+      <img src="../images/wastebin-street.jpg" alt="Waste bin street scene" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
+    </div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
+      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="containers.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Containers</a></div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="thermal.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Thermal Emitters →</a></div>
+    </div>
+    <footer><span class="footer-copy">© 2025 Antonio García Fernández</span><div class="footer-links"><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div></footer>
+  </main>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
+  <div class="lightbox-close">CLICK PARA CERRAR / ESC</div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+function openLightbox(src, caption) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = caption;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>
