@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 // DÉDALOS — Build Your Own Mobility — Antonio García Fernández</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .specs-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin: 30px 0;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .spec-item {
+      flex: 1;
+      min-width: 120px;
+    }
+    .spec-label {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .spec-value {
+      font-family: var(--font-head);
+      font-size: 28px;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .spec-unit {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--text-muted);
+    }
+    
+    .two-column-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin: 40px 0;
+      align-items: start;
+    }
+    
+    .image-column {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .image-column img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    
+    .full-width-image {
+      margin: 0;
+      width: 100%;
+    }
+    
+    .full-width-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+    .feature-card {
+      padding: 28px;
+      background: var(--bg);
+    }
+    .feature-card h4 {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    
+    .gallery-grid {
+      overflow: visible !important;
+    }
+    
+    .hover-zoom-container {
+      position: relative;
+      overflow: visible;
+      background: #111;
+      height: 320px;
+      cursor: pointer;
+    }
+    
+    .hover-zoom-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+      pointer-events: none;
+    }
+    
+    .hover-zoom-container:hover img {
+      object-fit: contain;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) scale(1.02);
+      z-index: 100;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      background: #000;
+    }
+    
+    /* LIGHTBOX CON NAVEGACIÓN */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.96);
+      cursor: default;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+    #lightbox.open {
+      display: flex !important;
+    }
+    .lightbox-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 85vh;
+    }
+    #lightbox-img {
+      max-width: 85%;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--accent);
+      color: white;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      z-index: 10001;
+    }
+    .lightbox-nav:hover {
+      background: var(--accent);
+      color: #000;
+    }
+    .lightbox-prev {
+      left: 20px;
+    }
+    .lightbox-next {
+      right: 20px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      z-index: 10001;
+    }
+    .lightbox-close:hover {
+      color: var(--accent);
+    }
+    .lightbox-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+    }
+    #lightbox-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    
+    @media (max-width: 768px) {
+      .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .image-column {
+        position: relative;
+        top: 0;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .specs-list {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+        /* Tipología carruseles - ancho fijo, altura variable, centrado con fondo negro */
+    .typology-carousel-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #111;
+      width: 100%;
+      display: flex;
+      align-items: center;  /* Centra verticalmente */
+      justify-content: center;  /* Centra horizontalmente */
+    }
+    
+    .typology-carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+      width: 100%;
+      align-items: center;
+    }
+    
+    .typology-carousel img {
+      width: 100%;
+      height: auto;  /* Altura automática manteniendo proporción */
+      flex-shrink: 0;
+      display: block;
+      object-fit: contain;
+      background: #111;
+    }
+  </style>
+</head>
+<body>
+<div class="cursor"></div><div class="cursor-follower"></div>
+<button class="mobile-menu-btn"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><rect width="20" height="1.5" fill="currentColor"/><rect y="6" width="14" height="1.5" fill="currentColor"/><rect y="12" width="20" height="1.5" fill="currentColor"/></svg></button>
+<nav class="mobile-nav"><button class="mobile-nav-close">✕ CLOSE</button><a href="../index.html">Home</a><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../contact.html">Contact</a></nav>
+<div class="site-wrap">
+  <aside class="sidebar">
+    <a href="../index.html" class="sidebar-logo">AG·FZ</a>
+    <nav class="sidebar-nav">
+      <a href="../index.html">00 // Home</a><a href="../work.html" class="active">01 // Work</a><a href="../about.html">02 // About</a><a href="../cv.html">03 // CV</a><a href="../contact.html">04 // Contact</a>
+    </nav>
+    <div class="sidebar-coords">43.3623°N<br>8.4115°W<br>ESP</div>
+  </aside>
+  <main class="main-content">
+    <div class="topbar"><span class="topbar-title">10 // DÉDALOS — BUILD YOUR OWN MOBILITY</span><div class="topbar-status"><div class="status-dot"></div><span class="topbar-meta">2026</span></div></div>
+    <a href="../work.html" class="back-link">← Back to All Projects</a>
+    
+    <div class="project-hero">
+      <img src="../images/dedalos-thumb.png" alt="Dédalos — Build Your Own Mobility" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,#1a0a0a,#2a150a)'">
+      <div class="project-hero-overlay"></div>
+      <div class="project-hero-content">
+        <div class="project-meta-row">
+          <span class="meta-pill">10</span>
+          <span class="meta-pill">2026</span>
+          <span class="meta-pill">Master in Design for Emergent Futures</span>
+          <span class="meta-pill">Modular Mobility</span>
+        </div>
+        <div class="project-title-block"><h1>Dédalos<br><span>Build Your Own</span><br>Mobility</h1></div>
+      </div>
+    </div>
+
+    <div class="project-body">
+      <div class="project-text">
+        <h2>Project Overview</h2>
+        <p><strong>Dédalos: Build Your Own Mobility</strong> investigates how modular and decentralized design systems can transform the relationship between people, mobility, and production. Inspired by informal engineering practices, repair culture, and open-source infrastructures, it proposes a modular bicycle construction system that allows users to build, adapt, and maintain their own bicycles using CNC-fabricated frame components and accessible standardized parts.</p>
+        
+        <p>The project includes a detailed catalogue of bicycle components, analyzing their cost, accessibility, manufacturability, and compatibility across different mobility scenarios such as urban commuting, road cycling, or off-road use. Based on this system, multiple bicycle configurations are developed according to different budgets and functional needs.</p>
+        
+        <p>Rather than designing a fixed product, the project creates an <strong>open mobility framework</strong> that encourages participation, technical literacy, repairability, and emotional attachment to objects. The final outcome consists of a working prototype and a digital platform supporting the user experience, assembly process, and customization of the bicycles.</p>
+
+        <div class="specs-list">
+          <div class="spec-item">
+            <div class="spec-label">Duration</div>
+            <div class="spec-value">6 months</div>
+            <div class="spec-unit">Jan – Jun 2026</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Directors</div>
+            <div class="spec-value">Saúl Baeza</div>
+            <div class="spec-value">Manuela Valtchanova</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Program</div>
+            <div class="spec-value">Emergent Futures</div>
+            <div class="spec-unit">Master in Design</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Outcome</div>
+            <div class="spec-value">Prototype + Platform</div>
+            <div class="spec-unit">Open-source</div>
+          </div>
+        </div>
+
+       <!-- Project Planning: dos columnas + imagen full width -->
+        <div class="two-column-layout">
+          <div>
+            <h2>Project Planning & Research</h2>
+            <p>The first step of the project was to establish its objectives, identify the key areas of research, and define the expected outcomes. This initial phase helped create a clear framework for the development of the project and ensured that both the design process and the final deliverables remained aligned with the core vision.</p>
+            <p>The intended outcomes included a comprehensive catalogue of bicycle components, a modular system capable of supporting three different bicycle typologies with interchangeable parts, a functional prototype demonstrating the feasibility of the system, and the development of a coherent narrative and product identity capable of communicating the project's social, technical, and cultural ambitions.</p>
+          </div>
+          <div class="image-column" style="max-height: 500px; overflow-y: auto; border: 1px solid var(--border); border-radius: 4px;">
+            <img src="../images/dedalos-planning.jpg" alt="Dédalos planning" 
+                 style="width: 100%; height: auto; display: block; filter: invert(0%);"
+                 onerror="this.style.background='#111';this.style.min-height='300px'">
+          </div>
+        </div>
+        
+        <!-- Imagen full width: partes-bici -->
+        <div class="full-width-image" style="margin: 0 0 30px 0;">
+          <img src="../images/partes-bici.jpg" alt="Dédalos bicycle parts" onerror="this.style.background='#111';this.style.height='200px'">
+        </div>
+
+                <h2>Component Analysis & Material Sourcing</h2>
+      
+        <div class="two-column-layout">
+          <div>
+            <p>Once the project objectives were defined, a detailed analysis of bicycle components was conducted to understand the requirements involved in building a complete bicycle system. Each component was identified and categorized according to several criteria: whether it could be manufactured locally or required an external supplier, whether it was necessary for a single-speed or multi-speed configuration, and whether it could be sourced second-hand or needed to be purchased new.</p>
+        
+            <p>After classifying all components, a comprehensive bill of materials was developed, including estimated prices based on suppliers and second-hand markets in and around Barcelona. Notes were also collected regarding recommended retailers and workshops, informed by reviews, availability, and product quality.</p>
+            <p>A similar process was carried out for the structural materials used in the project. Different timber suppliers and bicycle component distributors across Barcelona were researched and compared. The findings were then organized into two resource maps, identifying key locations for sourcing materials, components, tools, and fabrication services.</p>
+          </div>
+          <div class="image-column" style="max-height: 500px; overflow-y: auto; border: 1px solid var(--border); border-radius: 4px;">
+            <img src="../images/dedalos-escandallo.png" alt="Dédalos bill of materials" 
+                 style="width: 100%; height: auto; display: block;"
+                 onerror="this.style.background='#111';this.style.min-height='300px'">
+          </div>
+        </div>
+
+        <!-- Dos mapas lado a lado ocupando todo el ancho -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 0 0 30px 0; background: var(--border);">
+          <div style="overflow: hidden; background: #111;">
+            <img src="../images/dedalos-mapa-piezas.jpg" alt="Dédalos parts map" 
+                 style="width: 100%; height: auto; display: block;"
+                 onerror="this.style.background='#111';this.style.height='200px'">
+          </div>
+          <div style="overflow: hidden; background: #111;">
+            <img src="../images/dedalos-mapa-madera.jpg" alt="Dédalos wood map" 
+                 style="width: 100%; height: auto; display: block;"
+                 onerror="this.style.background='#111';this.style.height='200px'">
+          </div>
+        </div>
+
+        <h2>Design Development & Frame Architecture</h2>
+        <p>For the design phase, three bicycle categories were selected: <strong>urban, road, and off-road</strong>. This decision was made to maximize the versatility of the system and demonstrate the modular potential of the project across different mobility scenarios and user needs.</p>
+        
+        <p>To establish the foundations of each bicycle typology, a comparative analysis of their geometries and dimensions was conducted. Key parameters such as wheelbase, axle spacing, bottom bracket height, saddle position, handlebar height, and rider posture were studied and translated into a dimensional grid system. These reference geometries served as the basis for the development of the frame designs.</p>
+         <!-- Imagen bocetos-bicis con colores invertidos -->
+        <div class="full-width-image" style="margin: 20px 0 30px 0;">
+          <img src="../images/bocetos-bicis.jpg" alt="Dédalos bicycle sketches" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111';this.style.height='200px'">
+        </div>
+        <div class="two-column-layout">
+          <div>
+            <p>Given the project's commitment to accessible fabrication methods, the frame was conceived as a <strong>CNC-manufactured wooden structure</strong> assembled through a layered construction process. This approach allows the frame to be produced using standard plywood sheets while maintaining structural integrity and facilitating local manufacturing.</p>
+            <p>The design process involved mapping the position of all mechanical components, identifying critical load paths, and analyzing the main stress concentrations within the frame. Based on this assessment, a five-layer construction strategy was developed. The bottom bracket area and the lower frame section were identified as the zones subjected to the highest mechanical loads and torsional stresses.</p>
+            <p>As a result, these areas incorporate additional material thickness, increasing structural resistance while simultaneously lowering the center of gravity of the bicycle and improving overall stability.</p>
+          </div>
+          <div class="image-column">
+            <img src="../images/dedalos-urban-reticula.jpg" alt="Dédalos urban grid" onerror="this.style.background='#111';this.style.height='250px'">
+          </div>
+        </div>
+
+        <div class="full-width-image" style="margin: 0 0 30px 0;">
+          <img src="../images/dedalos-ensamblaje.jpg" alt="Dédalos assembly" onerror="this.style.background='#111';this.style.height='200px'">
+        </div>
+
+        <h3 style="font-family: var(--font-head); font-size: 18px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin: 40px 0 20px 0;">Bicycle Typologies</h3>
+
+        <!-- Urban - 40/60 -->
+        <div style="display: grid; grid-template-columns: 30% 70%; gap: 48px; margin: 40px 0; align-items: start;">
+          <div>
+            <h4 style="font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Urban</h4>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7;">Designed for city commuting with an upright riding position, comfortable geometry, and practical accessories. Optimized for short to medium distances on paved surfaces.</p>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-top: 12px;"><strong>Key features:</strong> Relaxed geometry, fender mounts, integrated lighting options, sturdy frame design.</p>
+          </div>
+          <div style="position: relative; overflow: hidden; border-radius: 4px; background: #111;">
+            <div class="typology-carousel" style="display: flex; transition: transform 0.5s ease; width: 100%;">
+              <img src="../images/dedalos-urban.png" alt="Dédalos Urban" style="width: 100%; flex-shrink: 0; display: block;">
+              <img src="../images/dedalos-urban-details.jpg" alt="Dédalos Urban details" style="width: 100%; flex-shrink: 0; display: block;">
+            </div>
+            <button class="carousel-prev" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 14px; z-index: 10;">❮</button>
+            <button class="carousel-next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 14px; z-index: 10;">❯</button>
+          </div>
+        </div>
+
+        <!-- Road - 40/60 -->
+        <div style="display: grid; grid-template-columns: 30% 70%; gap: 48px; margin: 40px 0; align-items: start;">
+          <div>
+            <h4 style="font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Road</h4>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7;">Lightweight and aerodynamic, designed for speed and long-distance rides. Features a more aggressive riding position and optimized geometry for efficiency.</p>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-top: 12px;"><strong>Key features:</strong> Sporty geometry, lightweight construction, drop bars, high-performance components.</p>
+          </div>
+          <div style="position: relative; overflow: hidden; border-radius: 4px; background: #111;">
+            <div class="typology-carousel" style="display: flex; transition: transform 0.5s ease; width: 100%;">
+              <img src="../images/dedalos-road.png" alt="Dédalos Road" style="width: 100%; flex-shrink: 0; display: block;">
+              <img src="../images/dedalos-road-details.jpg" alt="Dédalos Road details" style="width: 100%; flex-shrink: 0; display: block;">
+            </div>
+            <button class="carousel-prev" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 14px; z-index: 10;">❮</button>
+            <button class="carousel-next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 14px; z-index: 10;">❯</button>
+          </div>
+        </div>
+
+        <!-- MTB - 40/60 -->
+        <div style="display: grid; grid-template-columns: 30% 70%; gap: 48px; margin: 40px 0; align-items: start;">
+          <div>
+            <h4 style="font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Off‑Road / MTB</h4>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7;">Built for rugged terrain with a durable frame, wide tires, and stable geometry. Designed to handle gravel, dirt, and challenging off-road conditions.</p>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-top: 12px;"><strong>Key features:</strong> Reinforced frame, wider tire clearance, flat handlebars, robust drivetrain.</p>
+          </div>
+          <div style="position: relative; overflow: hidden; border-radius: 4px; background: #111;">
+            <div class="typology-carousel" style="display: flex; transition: transform 0.5s ease; width: 100%;">
+              <img src="../images/dedalos-mtb.png" alt="Dédalos MTB" style="width: 100%; flex-shrink: 0; display: block;">
+              <img src="../images/dedalos-mtb-details.jpg" alt="Dédalos MTB details" style="width: 100%; flex-shrink: 0; display: block;">
+            </div>
+            <button class="carousel-prev" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 14px; z-index: 10;">❮</button>
+            <button class="carousel-next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: white; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 14px; z-index: 10;">❯</button>
+          </div>
+        </div>
+
+                <h2>Creating the Prototype</h2>
+        <p>After completing the design phase, the urban concept was selected for prototyping. Rhino files were developed to cut the different frame components, which were later assembled and fitted with the necessary hardware.</p>
+        
+        <p>A <strong>single-speed drivetrain</strong> was implemented, using a fixed sprocket and no gear shifting system. This decision simplified the overall mechanical complexity, eliminated the need for shift cables and derailleurs, and reduced costs by minimizing the number of components.</p>
+        
+        <p>All drivetrain parts were sourced from local bicycle shops such as Monbike. The plywood sheets required for the frame were ordered and prepared for CNC cutting using ELISAVA's machinery. Once cut, each piece was individually sanded to improve surface finish and assembly precision, and then joined together using screws at key structural points.</p>
+        
+        <p><strong>Each plywood layer had a thickness of 18 mm, resulting in a total frame width of 90 mm.</strong></p>
+
+        <!-- 2 filas x 3 columnas de imágenes del proceso -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; background: var(--border); margin: 30px 0 40px 0;">
+          <div style="overflow: hidden; background: #111; aspect-ratio: 4/3;">
+            <img src="../images/dedalos-madera.jpeg" alt="Wood preparation" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="overflow: hidden; background: #111; aspect-ratio: 4/3;">
+            <img src="../images/dedalos-cnc.jpeg" alt="CNC cutting" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="overflow: hidden; background: #111; aspect-ratio: 4/3;">
+            <img src="../images/dedalos-piezas.jpeg" alt="Cut pieces" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="overflow: hidden; background: #111; aspect-ratio: 4/3;">
+            <img src="../images/dedalos-lijar.jpeg" alt="Sanding" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="overflow: hidden; background: #111; aspect-ratio: 4/3;">
+            <img src="../images/dedalos-ensamblaje2.jpeg" alt="Assembly" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="overflow: hidden; background: #111; aspect-ratio: 4/3;">
+            <img src="../images/dedalos-prototype1.png" alt="Prototype assembly" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+        </div>
+
+                <h2>Brand Identity — Dédalos</h2>
+        
+        <!-- Dos columnas: 40% texto | 60% imagen -->
+        <div style="display: grid; grid-template-columns: 40% 60%; gap: 48px; margin: 30px 0 40px 0; align-items: center;">
+          
+          <!-- Columna izquierda: Texto (40%) -->
+          <div>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">Next, a corporate identity was developed under the name <strong>Dédalos: Build your own mobility</strong>. The name is inspired by <strong>Daedalus</strong>, the engineer and inventor from Greek mythology who created wooden wings for his son Icarus. This reference establishes an analogy between the myth and the project: both highlight creativity, craftsmanship, and a do-it-yourself (DIY) approach.</p>
+            
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7;">At the same time, it reinforces the project's narrative of freedom, autonomy, and decentralized manufacturing, positioning mobility as something that can be self-built and reimagined by the user.</p>
+          </div>
+          
+          <!-- Columna derecha: Imagen (60%) -->
+          <div>
+            <img src="../images/dedalos-identidad.jpg" alt="Dédalos identity" 
+                 style="width: 100%; height: auto; display: block; border-radius: 4px;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+          
+        </div>
+
+                <h2>Final Reflections</h2>
+        
+        <!-- Tres columnas: texto | imagen1 | imagen2 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin: 30px 0 40px 0; align-items: start;">
+          
+          <!-- Columna 1: Texto -->
+          <div>
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">This project has been an opportunity to explore the relationship between mobility, design, autonomy, and participation. Throughout the process, I have gained a deeper understanding of bicycle systems, manufacturing methods, material selection, and modular design principles, while also reflecting on broader questions related to ownership, repair culture, and decentralized production.</p>
+            
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">One of the most valuable lessons has been realizing that <strong>design is not only about creating objects, but also about creating systems that enable people to participate in their own material reality</strong>. By researching bicycle components, fabrication processes, sourcing networks, and user needs, I became increasingly interested in how design can empower individuals rather than simply provide finished products.</p>
+            
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7;">Although the project achieved its main objectives, I would have liked to have more time to enter a more detailed development phase. In particular, I would have liked to manufacture and assemble a complete prototype using the final frame design and all mechanical components. This would have allowed me to test the system under real conditions, evaluate its structural performance, analyze potential weaknesses, and better understand issues related to weight, material density, durability, and load distribution.</p>
+          </div>
+          
+          <!-- Columna 2: Imagen 1 -->
+          <div>
+            <img src="../images/dedalos-presentacion.jpeg" alt="Dédalos presentation 1" 
+                 style="width: 100%; height: auto; display: block; border-radius: 4px;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+          
+          <!-- Columna 3: Imagen 2 -->
+          <div>
+            <img src="../images/dedalos-presentacion2.jpeg" alt="Dédalos presentation 2" 
+                 style="width: 100%; height: auto; display: block; border-radius: 4px;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+          
+        </div>
+
+        <h2>Next Steps — Open-Source Platform</h2>
+        <p>The project should therefore be understood as the foundation of a larger and ongoing investigation rather than a finished solution. Future work will focus on refining the frame architecture, improving structural efficiency, and expanding the range of possible bicycle configurations within the modular system.</p>
+        
+        <p>Looking ahead, one of my main goals is to develop an <strong>open-source digital platform</strong> where all project documentation, fabrication files, assembly guides, and technical specifications will be freely available. Through this website, users will be able to access the CNC files, learn how to source components, and follow step-by-step instructions to build their own bicycle according to their needs and budget.</p>
+        
+        <p>Ultimately, <strong>Dédalos aims to become more than a bicycle project</strong>. It seeks to contribute to a culture of making, repairing, and understanding the objects that shape our everyday lives. By sharing knowledge openly and enabling people to build their own means of transportation, the project aspires to promote greater autonomy, technical literacy, and more meaningful relationships between people, objects, and mobility infrastructures.</p>
+
+      </div>
+
+      <div class="project-sidebar-info">
+        <div class="info-block"><h4>Project Details</h4>
+          <div class="info-row"><span class="key">Year</span><span class="val">2026</span></div>
+          <div class="info-row"><span class="key">Duration</span><span class="val">6 months</span></div>
+          <div class="info-row"><span class="key">Program</span><span class="val">Master in Design for Emergent Futures</span></div>
+          <div class="info-row"><span class="key">Directors</span><span class="val">Saúl Baeza · Manuela Valtchanova</span></div>
+        </div>
+        <div class="info-block"><h4>Key Contributions</h4>
+          <div class="info-row"><span class="key">01</span><span class="val">Modular frame architecture</span></div>
+          <div class="info-row"><span class="key">02</span><span class="val">Component analysis & sourcing</span></div>
+          <div class="info-row"><span class="key">03</span><span class="val">CNC fabrication strategy</span></div>
+          <div class="info-row"><span class="key">04</span><span class="val">Brand identity & narrative</span></div>
+        </div>
+        <div class="info-block"><h4>Tools Used</h4>
+          <div class="info-row"><span class="key">3D / CAD</span><span class="val">Rhinoceros</span></div>
+          <div class="info-row"><span class="key">Fabrication</span><span class="val">CNC · Laser Cut</span></div>
+          <div class="info-row"><span class="key">Design</span><span class="val">Illustrator / InDesign</span></div>
+        </div>
+        <div class="info-block"><h4>Keywords</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">MODULAR</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">DIY</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">OPEN-SOURCE</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">BICYCLE</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">CNC</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">REPAIR</span>
+            <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">EMERGENT</span>
+          </div>
+        </div>
+        <a href="../contact.html" class="btn btn-primary" style="display:block;text-align:center;">Discuss this project →</a>
+      </div>
+    </div>
+
+    <!-- Final Panels Gallery -->
+    <div style="margin: 40px 48px 20px 48px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px;">FINAL DELIVERABLES</div>
+      <h2 style="font-family: var(--font-head); font-size: 20px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text);">Final panels</h2>
+    </div>
+
+    <div class="gallery-grid cols-2" style="margin:0 48px 64px; overflow: visible;">
+      <div class="hover-zoom-container" onclick="openDedalosLightbox(0)">
+        <img src="../images/PANEL-DEDALOS1.jpg" alt="Dédalos panel 1">
+      </div>
+      <div class="hover-zoom-container" onclick="openDedalosLightbox(1)">
+        <img src="../images/PANEL-DEDALOS2.jpg" alt="Dédalos panel 2">
+      </div>
+    </div>
+
+    <!-- Navigation between projects -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
+      <div style="padding:32px 48px;background:var(--bg);">
+        <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div>
+        <a href="node.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← NODE</a>
+      </div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;">
+        <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div>
+        <a href="containers.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Containers 800/1100l →</a>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-copy">© 2025 Antonio García Fernández</span>
+      <div class="footer-links">
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeDedalosLightbox(event)">
+  <div class="lightbox-close" onclick="closeDedalosLightbox()">✕ CLOSE</div>
+  <div class="lightbox-container">
+    <button class="lightbox-nav lightbox-prev" onclick="prevDedalosLightbox(event)">❮</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextDedalosLightbox(event)">❯</button>
+  </div>
+  <div id="lightbox-caption"></div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+// ============ DÉDALOS GALLERY ============
+const dedalosGallery = [
+  { src: '../images/PANEL-DEDALOS1.jpg', caption: 'Dédalos — Panel 01: System Overview' },
+  { src: '../images/PANEL-DEDALOS2.jpg', caption: 'Dédalos — Panel 02: Assembly & Components' }
+];
+
+let currentDedalosGallery = [];
+let currentDedalosIndex = 0;
+
+function openDedalosLightbox(index) {
+  currentDedalosGallery = dedalosGallery;
+  currentDedalosIndex = index;
+  const lb = document.getElementById('lightbox');
+  const imgElement = document.getElementById('lightbox-img');
+  const captionElement = document.getElementById('lightbox-caption');
+  const counterElement = document.getElementById('lightbox-counter');
+  
+  imgElement.src = currentDedalosGallery[index].src;
+  captionElement.textContent = currentDedalosGallery[index].caption;
+  counterElement.textContent = `${index + 1} / ${currentDedalosGallery.length}`;
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDedalosLightbox(event) {
+  if (event && (event.target.classList?.contains('lightbox-nav') || 
+                event.target.closest?.('.lightbox-nav'))) {
+    return;
+  }
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  currentDedalosGallery = [];
+}
+
+function nextDedalosLightbox(event) {
+  if (event) event.stopPropagation();
+  if (currentDedalosGallery.length === 0) return;
+  
+  currentDedalosIndex = (currentDedalosIndex + 1) % currentDedalosGallery.length;
+  document.getElementById('lightbox-img').src = currentDedalosGallery[currentDedalosIndex].src;
+  document.getElementById('lightbox-caption').textContent = currentDedalosGallery[currentDedalosIndex].caption;
+  document.getElementById('lightbox-counter').textContent = `${currentDedalosIndex + 1} / ${currentDedalosGallery.length}`;
+}
+
+function prevDedalosLightbox(event) {
+  if (event) event.stopPropagation();
+  if (currentDedalosGallery.length === 0) return;
+  
+  currentDedalosIndex = (currentDedalosIndex - 1 + currentDedalosGallery.length) % currentDedalosGallery.length;
+  document.getElementById('lightbox-img').src = currentDedalosGallery[currentDedalosIndex].src;
+  document.getElementById('lightbox-caption').textContent = currentDedalosGallery[currentDedalosIndex].caption;
+  document.getElementById('lightbox-counter').textContent = `${currentDedalosIndex + 1} / ${currentDedalosGallery.length}`;
+}
+
+// Cerrar con tecla ESC y navegar con flechas
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDedalosLightbox();
+  if (e.key === 'ArrowLeft') prevDedalosLightbox(e);
+  if (e.key === 'ArrowRight') nextDedalosLightbox(e);
+});
+// ============ CARRUSELES DE TIPOLOGÍAS ============
+document.addEventListener('DOMContentLoaded', function() {
+  const carousels = document.querySelectorAll('.typology-carousel');
+  
+  carousels.forEach(function(carousel) {
+    const container = carousel.parentElement;
+    const prevBtn = container.querySelector('.carousel-prev');
+    const nextBtn = container.querySelector('.carousel-next');
+    const images = carousel.querySelectorAll('img');
+    let currentIndex = 0;
+    const totalImages = images.length;
+    
+    function updateCarousel(index) {
+      carousel.style.transform = 'translateX(-' + (index * 100) + '%)';
+    }
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateCarousel(currentIndex);
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateCarousel(currentIndex);
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
