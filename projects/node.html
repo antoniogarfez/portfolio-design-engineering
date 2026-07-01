@@ -6,6 +6,87 @@
   <title>08 // NODE ENGINEERING CLUB — ASKET ASV — Antonio García Fernández</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
+        /* LIGHTBOX CON NAVEGACIÓN */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.96);
+      cursor: default;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+    #lightbox.open {
+      display: flex !important;
+    }
+    .lightbox-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 85vh;
+    }
+    #lightbox-img {
+      max-width: 85%;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--accent);
+      color: white;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      z-index: 10001;
+    }
+    .lightbox-nav:hover {
+      background: var(--accent);
+      color: #000;
+    }
+    .lightbox-prev {
+      left: 20px;
+    }
+    .lightbox-next {
+      right: 20px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      z-index: 10001;
+    }
+    .lightbox-close:hover {
+      color: var(--accent);
+    }
+    .lightbox-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+    }
+    #lightbox-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
     .feature-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -84,6 +165,13 @@
     <div class="project-hero">
       <img src="../images/asket-hero.jpg" alt="Node Engineering Club — Asket ASV" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,#0a1a3a,#0d1a3d)'">
       <div class="project-hero-overlay"></div>
+      <!-- Logo de Node Engineering Club en esquina superior derecha -->
+      <div style="position: absolute; top: 30px; right: 300px; z-index: 20;">
+        <img src="../images/node-logo.png" 
+             alt="Node Engineering Club Logo" 
+             style="height: 60px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
+             onerror="this.style.display='none'">
+      </div>
       <div class="project-hero-content">
         <div class="project-meta-row">
           <span class="meta-pill">08</span>
@@ -97,11 +185,20 @@
 
     <div class="project-body">
       <div class="project-text">
-        <h2>Project Overview</h2>
-        <p>Asket is an Autonomous Surface Vessel (ASV) developed by <strong>Node Engineering Club</strong>, an open‑source engineering community building autonomous robots. The vessel is specifically designed for the Njord 2026 physical autonomous challenge — a competition demanding robust navigation, obstacle avoidance, and autonomous mission execution in real‑world water environments.</p>
-        
-        <p>The team comprises <strong>13–15 active members</strong> from various engineering disciplines, working collaboratively on hardware, software, and mechanical systems. Asket represents the club's commitment to accessible, open‑source autonomy.</p>
-
+        <!-- Layout de dos columnas: Project Overview + imagen -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 0 0 40px 0; align-items: start;">
+          <div>
+            <h2>Project Overview</h2>
+            <p>Asket is an Autonomous Surface Vessel (ASV) developed by <strong>Node Engineering Club</strong>, an open‑source engineering community building autonomous robots. The vessel is specifically designed for the Njord 2026 physical autonomous challenge — a competition demanding robust navigation, obstacle avoidance, and autonomous mission execution in real‑world water environments.</p>
+            
+            <p>The team comprises <strong>13–15 active members</strong> from various engineering disciplines, working collaboratively on hardware, software, and mechanical systems. Asket represents the club's commitment to accessible, open‑source autonomy.</p>
+          </div>
+          <div>
+            <img src="../images/node-team.jpeg" alt="Node Engineering Club team" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; display: block;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+        </div>
         <div class="specs-list">
           <div class="spec-item">
             <div class="spec-label">Team size</div>
@@ -125,8 +222,8 @@
           </div>
         </div>
 
-       <!-- Layout de dos columnas: My Role + imagen objetivos -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 40px 0; align-items: start;">
+         <!-- Layout de dos columnas: My Role + imagen objetivos -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 80px; align-items: center;">
           <div>
             <h2>My Role — Head of Exterior Design</h2>
             <p>As Head of Exterior Design, my responsibility was to evolve the previous year's vessel model into a more capable, refined, and visually compelling platform. The key objectives were:</p>
@@ -145,7 +242,7 @@
         </div>
 
         <!-- Layout de dos columnas para imagen y texto -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 40px 0; align-items: start;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 40px 0; align-items: center;">
           <div>
             <img src="../images/node-cambio.png" alt="Asket ASV hull design" 
                  style="width: 100%; height: auto; object-fit: contain; border-radius: 4px;"
@@ -177,6 +274,12 @@
         <div style="margin: 0 0 40px 0; width: 100%; line-height: 0;">
           <img src="../images/node-sketches2.png" alt="Node ASV sketches development 2" 
                style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='300px'">
+        </div>
+            <!-- Imagen full width referencia (colores normales) -->
+        <div style="margin: 0 0 40px 0; width: 100%; line-height: 0;">
+          <img src="../images/node-imageref.png" alt="Node ASV reference image" 
+               style="width: 100%; height: auto; display: block;"
                onerror="this.style.background='#111'; this.style.height='300px'">
         </div>
         <div class="feature-grid">
@@ -245,21 +348,31 @@
       </div>
     </div>
 
-    <!-- Galería de imágenes -->
-    <div class="gallery-grid cols-2" style="margin:0 48px 64px;">
-      <img src="../images/asket-render1.jpg" alt="Asket ASV front view" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
-      <img src="../images/asket-render2.jpg" alt="Asket ASV side profile" style="height:320px;" onerror="this.style.background='#111';this.style.height='320px'">
+      <!-- Galería final con lightbox navegable -->
+    <!-- Imagen full width -->
+    <div class="gallery-grid cols-1" style="margin:0 48px 64px;">
+      <img src="../images/node-panel.png" alt="Node ASV presentation panel" 
+           style="width: 100%; height: auto; cursor: pointer;" onclick="openNodeLightbox(0)"
+           onerror="this.style.background='#111'; this.style.height='300px'">
     </div>
+    
+    <!-- Tres imágenes en la misma fila -->
     <div class="gallery-grid cols-3" style="margin:0 48px 64px;">
-      <img src="../images/asket-radar.jpg" alt="Radar integration detail" style="height:260px;" onerror="this.style.background='#111';this.style.height='260px'">
-      <img src="../images/asket-hull-detail.jpg" alt="3D printed hull section" style="height:260px;" onerror="this.style.background='#111';this.style.height='260px'">
-      <img src="../images/asket-team.jpg" alt="Node Engineering Club team" style="height:260px;" onerror="this.style.background='#111';this.style.height='260px'">
+      <img src="../images/node-render1.png" alt="Node ASV render 1" 
+           style="height:260px; cursor: pointer; object-fit: cover;" onclick="openNodeLightbox(1)"
+           onerror="this.style.background='#111';this.style.height='260px'">
+      <img src="../images/node-render2.png" alt="Node ASV render 2" 
+           style="height:260px; cursor: pointer; object-fit: cover;" onclick="openNodeLightbox(2)"
+           onerror="this.style.background='#111';this.style.height='260px'">
+      <img src="../images/node-render3.png" alt="Node ASV render 3" 
+           style="height:260px; cursor: pointer; object-fit: cover;" onclick="openNodeLightbox(3)"
+           onerror="this.style.background='#111';this.style.height='260px'">
     </div>
 
     <!-- Navegación entre proyectos -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
-      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="modules.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Module Design</a></div>
-      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="relief.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Relief Exercise →</a></div>
+      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="proraptor.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Proraptor</a></div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="dedalos.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">DEDALOS →</a></div>
     </div>
 
     <footer>
@@ -273,5 +386,84 @@
   </main>
 </div>
 <script src="../js/main.js"></script>
+<script>
+// ============ GALERÍA NODE (4 imágenes) CON NAVEGACIÓN ============
+const nodeGallery = [
+  { src: '../images/node-panel.png', caption: 'Node ASV — Technical Panel' },
+  { src: '../images/node-render1.png', caption: 'Node ASV — Render View 01' },
+  { src: '../images/node-render2.png', caption: 'Node ASV — Render View 02' },
+  { src: '../images/node-render3.png', caption: 'Node ASV — Render View 03' }
+];
+
+let currentNodeGallery = [];
+let currentNodeIndex = 0;
+
+function openNodeLightbox(index) {
+  currentNodeGallery = nodeGallery;
+  currentNodeIndex = index;
+  const lb = document.getElementById('lightbox');
+  const imgElement = document.getElementById('lightbox-img');
+  const captionElement = document.getElementById('lightbox-caption');
+  const counterElement = document.getElementById('lightbox-counter');
+  
+  imgElement.src = currentNodeGallery[index].src;
+  captionElement.textContent = currentNodeGallery[index].caption;
+  counterElement.textContent = `${index + 1} / ${currentNodeGallery.length}`;
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(event) {
+  if (event && (event.target.classList?.contains('lightbox-nav') || 
+                event.target.closest?.('.lightbox-nav'))) {
+    return;
+  }
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  currentNodeGallery = [];
+}
+
+function nextLightboxImage(event) {
+  if (event) event.stopPropagation();
+  
+  if (currentNodeGallery.length > 0) {
+    currentNodeIndex = (currentNodeIndex + 1) % currentNodeGallery.length;
+    document.getElementById('lightbox-img').src = currentNodeGallery[currentNodeIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentNodeGallery[currentNodeIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentNodeIndex + 1} / ${currentNodeGallery.length}`;
+  }
+}
+
+function prevLightboxImage(event) {
+  if (event) event.stopPropagation();
+  
+  if (currentNodeGallery.length > 0) {
+    currentNodeIndex = (currentNodeIndex - 1 + currentNodeGallery.length) % currentNodeGallery.length;
+    document.getElementById('lightbox-img').src = currentNodeGallery[currentNodeIndex].src;
+    document.getElementById('lightbox-caption').textContent = currentNodeGallery[currentNodeIndex].caption;
+    document.getElementById('lightbox-counter').textContent = `${currentNodeIndex + 1} / ${currentNodeGallery.length}`;
+  }
+}
+
+// Cerrar con tecla ESC y navegar con flechas
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') prevLightboxImage(e);
+  if (e.key === 'ArrowRight') nextLightboxImage(e);
+});
+</script>
+<!-- LIGHTBOX CON NAVEGACIÓN -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightbox()">✕ CLOSE</div>
+  <div class="lightbox-container">
+    <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage(event)">❮</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage(event)">❯</button>
+  </div>
+  <div id="lightbox-caption"></div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
 </body>
 </html>
