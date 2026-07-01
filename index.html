@@ -67,7 +67,7 @@
     <!-- ═══ HERO ═══ -->
     <section class="hero">
       <div class="hero-bg"></div>
-      <img class="hero-image" src="images/proraptor-hero.JPG" alt="Proraptor Amphibious Motorcycle" onerror="this.style.opacity='0'">
+      <img class="hero-image" src="images/proraptor-hero.jpg" alt="Proraptor Amphibious Motorcycle" onerror="this.style.opacity='0'">
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
@@ -111,8 +111,173 @@
         <div style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); margin-top: 12px; text-align: left;">— Antonio García</div>
       </div>
     </section>
+               <!-- ═══ VIDEOS PRESENTACIÓN CON EFECTO CYBERPUNK ═══ -->
+    <section style="padding: 120px 48px 80px 48px; overflow: hidden; position: relative;">
+      
+      <!-- Degradados en los bordes laterales -->
+      <div style="position: absolute; top: 0; left: 48px; width: 80px; height: 100%; background: linear-gradient(to right, var(--bg), transparent); z-index: 10; pointer-events: none;"></div>
+      <div style="position: absolute; top: 0; right: 48px; width: 80px; height: 100%; background: linear-gradient(to left, var(--bg), transparent); z-index: 10; pointer-events: none;"></div>
+      
+      <!-- CONTENEDOR SUPERIOR DE PARTÍCULAS -->
+      <div style="position: relative; z-index: 5; height: 30px; overflow: hidden; margin-bottom: -2px;">
+        <div style="position: absolute; inset: 0; pointer-events: none;">
+          
+          <!-- Línea gruesa superior -->
+          <div style="position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: var(--accent); opacity: 0.8; box-shadow: 0 0 20px var(--accent), 0 0 60px rgba(244,149,29,0.2); animation: lineaSuperior 6s linear infinite;"></div>
+          
+          <!-- Partículas horizontales (diferentes tamaños, velocidades y posiciones) -->
+          <div style="position: absolute; top: 5px; left: 5%; width: 30px; height: 2px; background: var(--accent); opacity: 0.5; box-shadow: 0 0 8px var(--accent); animation: particulaHorizontal 1.8s linear infinite;"></div>
+          <div style="position: absolute; top: 15px; left: 20%; width: 50px; height: 1px; background: var(--accent); opacity: 0.3; box-shadow: 0 0 6px var(--accent); animation: particulaHorizontal 2.5s linear infinite; animation-delay: 0.3s;"></div>
+          <div style="position: absolute; top: 8px; left: 40%; width: 20px; height: 2px; background: var(--accent); opacity: 0.6; box-shadow: 0 0 10px var(--accent); animation: particulaHorizontal 1.5s linear infinite; animation-delay: 0.8s;"></div>
+          <div style="position: absolute; top: 20px; left: 55%; width: 60px; height: 1px; background: var(--accent); opacity: 0.4; box-shadow: 0 0 8px var(--accent); animation: particulaHorizontal 3s linear infinite; animation-delay: 1.2s;"></div>
+          <div style="position: absolute; top: 10px; left: 75%; width: 40px; height: 2px; background: var(--accent); opacity: 0.5; box-shadow: 0 0 10px var(--accent); animation: particulaHorizontal 2.2s linear infinite; animation-delay: 0.5s;"></div>
+          <div style="position: absolute; top: 18px; left: 90%; width: 25px; height: 1px; background: var(--accent); opacity: 0.4; box-shadow: 0 0 6px var(--accent); animation: particulaHorizontal 2.8s linear infinite; animation-delay: 1.6s;"></div>
+          <div style="position: absolute; top: 3px; left: 60%; width: 45px; height: 2px; background: var(--accent); opacity: 0.6; box-shadow: 0 0 10px var(--accent); animation: particulaHorizontal 1.9s linear infinite; animation-delay: 0.9s;"></div>
+          <div style="position: absolute; top: 22px; left: 10%; width: 15px; height: 2px; background: var(--accent); opacity: 0.3; box-shadow: 0 0 6px var(--accent); animation: particulaHorizontal 2.1s linear infinite; animation-delay: 0.2s;"></div>
+          
+        </div>
+      </div>
+      
+      <!-- CONTENEDOR DE LA CINTA -->
+      <div style="overflow: hidden; background: var(--border); position: relative; z-index: 1;">
+        <div id="videoCinta" style="display: flex; gap: 2px; width: max-content; animation: moverCinta 20s linear infinite;">
+          
+          <div style="flex-shrink: 0; width: 50vw; height: 30vw; background: #000; overflow: hidden; min-width: 400px; min-height: 250px;">
+            <video autoplay loop muted playsinline 
+                   style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="images/proraptor-video1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div style="flex-shrink: 0; width: 50vw; height: 30vw; background: #000; overflow: hidden; min-width: 400px; min-height: 250px;">
+            <video autoplay loop muted playsinline 
+                   style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="images/proraptor-video2.mp4" type="video/mp4">
+            </video>
+          </div>
+          
+          <div style="flex-shrink: 0; width: 50vw; height: 30vw; background: #000; overflow: hidden; min-width: 400px; min-height: 250px;">
+            <video autoplay loop muted playsinline 
+                   style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="images/proraptor-video1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div style="flex-shrink: 0; width: 50vw; height: 30vw; background: #000; overflow: hidden; min-width: 400px; min-height: 250px;">
+            <video autoplay loop muted playsinline 
+                   style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="images/proraptor-video2.mp4" type="video/mp4">
+            </video>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- CONTENEDOR INFERIOR DE PARTÍCULAS -->
+      <div style="position: relative; z-index: 5; height: 30px; overflow: hidden; margin-top: -2px;">
+        <div style="position: absolute; inset: 0; pointer-events: none;">
+          
+          <!-- Línea gruesa inferior -->
+          <div style="position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: var(--accent); opacity: 0.8; box-shadow: 0 0 20px var(--accent), 0 0 60px rgba(244,149,29,0.2); animation: lineaInferior 6s linear infinite;"></div>
+          
+          <!-- Partículas horizontales (diferentes tamaños, velocidades y posiciones) -->
+          <div style="position: absolute; top: 5px; left: 8%; width: 40px; height: 2px; background: var(--accent); opacity: 0.5; box-shadow: 0 0 8px var(--accent); animation: particulaHorizontal 2s linear infinite;"></div>
+          <div style="position: absolute; top: 15px; left: 25%; width: 25px; height: 1px; background: var(--accent); opacity: 0.4; box-shadow: 0 0 6px var(--accent); animation: particulaHorizontal 2.6s linear infinite; animation-delay: 0.4s;"></div>
+          <div style="position: absolute; top: 8px; left: 45%; width: 55px; height: 2px; background: var(--accent); opacity: 0.6; box-shadow: 0 0 10px var(--accent); animation: particulaHorizontal 1.6s linear infinite; animation-delay: 0.9s;"></div>
+          <div style="position: absolute; top: 20px; left: 60%; width: 35px; height: 1px; background: var(--accent); opacity: 0.3; box-shadow: 0 0 6px var(--accent); animation: particulaHorizontal 2.9s linear infinite; animation-delay: 1.3s;"></div>
+          <div style="position: absolute; top: 10px; left: 80%; width: 50px; height: 2px; background: var(--accent); opacity: 0.5; box-shadow: 0 0 10px var(--accent); animation: particulaHorizontal 2.3s linear infinite; animation-delay: 0.6s;"></div>
+          <div style="position: absolute; top: 18px; left: 95%; width: 20px; height: 1px; background: var(--accent); opacity: 0.4; box-shadow: 0 0 6px var(--accent); animation: particulaHorizontal 2.7s linear infinite; animation-delay: 1.7s;"></div>
+          <div style="position: absolute; top: 3px; left: 50%; width: 30px; height: 2px; background: var(--accent); opacity: 0.6; box-shadow: 0 0 10px var(--accent); animation: particulaHorizontal 1.7s linear infinite; animation-delay: 0.1s;"></div>
+          <div style="position: absolute; top: 22px; left: 15%; width: 45px; height: 2px; background: var(--accent); opacity: 0.3; box-shadow: 0 0 6px var(--accent); animation: particulaHorizontal 2.4s linear infinite; animation-delay: 1.1s;"></div>
+          
+        </div>
+      </div>
+      
+    </section>
 
-    <!-- ═══ SELECTED WORKS ═══ -->
+    <style>
+      /* Animación de la cinta hacia la derecha */
+      @keyframes moverCinta {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+      }
+      
+      /* Línea superior: se mueve hacia la izquierda */
+      @keyframes lineaSuperior {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      
+      /* Línea inferior: se mueve hacia la derecha */
+      @keyframes lineaInferior {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(50%); }
+      }
+      
+      /* Partículas horizontales: se mueven hacia la izquierda */
+      @keyframes particulaHorizontal {
+        0% { transform: translateX(0); opacity: 0.2; width: 20px; }
+        50% { opacity: 0.9; width: 55px; }
+        100% { transform: translateX(-100px); opacity: 0.1; width: 10px; }
+      }
+      
+      /* Pausar la cinta al hacer hover */
+      #videoCinta:hover {
+        animation-play-state: paused;
+      }
+    </style>
+
+    <style>
+      /* Animación de la cinta hacia la derecha */
+      @keyframes moverCinta {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+      }
+      
+      /* Línea gruesa superior: se mueve hacia la izquierda */
+      @keyframes lineaGruesaSuperior {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      
+      /* Línea gruesa inferior: se mueve hacia la derecha */
+      @keyframes lineaGruesaInferior {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(50%); }
+      }
+      
+      /* Partículas verticales superiores */
+      @keyframes particulaVerticalSuperior {
+        0% { transform: translateY(0); opacity: 0.2; height: 15px; }
+        50% { opacity: 0.9; height: 30px; }
+        100% { transform: translateY(-25px); opacity: 0.1; height: 10px; }
+      }
+      
+      /* Partículas verticales inferiores */
+      @keyframes particulaVerticalInferior {
+        0% { transform: translateY(0); opacity: 0.2; height: 15px; }
+        50% { opacity: 0.9; height: 30px; }
+        100% { transform: translateY(25px); opacity: 0.1; height: 10px; }
+      }
+      
+      /* Líneas horizontales superiores */
+      @keyframes particulaHorizontalSuperior {
+        0% { transform: translateX(0); opacity: 0.2; width: 15px; }
+        50% { opacity: 0.8; width: 45px; }
+        100% { transform: translateX(-60px); opacity: 0.1; width: 10px; }
+      }
+      
+      /* Líneas horizontales inferiores */
+      @keyframes particulaHorizontalInferior {
+        0% { transform: translateX(0); opacity: 0.2; width: 15px; }
+        50% { opacity: 0.8; width: 45px; }
+        100% { transform: translateX(60px); opacity: 0.1; width: 10px; }
+      }
+      
+      /* Pausar la cinta al hacer hover */
+      #videoCinta:hover {
+        animation-play-state: paused;
+      }
+    </style>
+        <!-- ═══ SELECTED WORKS ═══ -->
     <section class="section">
       <div class="reveal">
         <div class="section-label">// 01 — Portfolio</div>
@@ -137,7 +302,7 @@
           </div>
         </a>
 
-        <!-- Medium: NODE (reemplaza a Containers) -->
+        <!-- Medium: NODE (02) -->
         <a href="projects/node.html" class="project-card medium">
           <div class="project-card-inner">
             <img src="images/asket-hero.jpg" alt="NODE Autonomous Surface Vessel"
@@ -152,8 +317,23 @@
           </div>
         </a>
 
-        <!-- Medium: Containers (antes estaba Thermal Emitters) -->
-        <a href="projects/containers.html" class="project-card medium">
+        <!-- Medium: Dédalos (03) -->
+        <a href="projects/dedalos.html" class="project-card medium">
+          <div class="project-card-inner">
+            <img src="images/dedalos-thumb.png" alt="Dédalos — Build Your Own Mobility"
+                 onerror="this.src=''; this.parentElement.style.background='#111'">
+            <div class="project-card-overlay"></div>
+            <div class="project-card-info">
+              <div class="project-card-num">03 // 2026</div>
+              <div class="project-card-title">Dédalos —<br>Build Your Own Mobility</div>
+              <div class="project-card-meta">Master in Design for Emergent Futures</div>
+            </div>
+            <div class="project-card-arrow">→</div>
+          </div>
+        </a>
+
+        <!-- Small: Containers (04) -->
+        <a href="projects/containers.html" class="project-card small">
           <div class="project-card-inner">
             <img src="images/containers-thumb.jpg" alt="Rear-load Containers"
                  onerror="this.src=''; this.parentElement.style.background='#111'">
@@ -167,14 +347,14 @@
           </div>
         </a>
 
-        <!-- Small cards -->
+        <!-- Small: Wastebins (05) -->
         <a href="projects/wastebin.html" class="project-card small">
           <div class="project-card-inner">
             <img src="images/wastebin-thumb.jpg" alt="Urban Waste Bins"
                  onerror="this.src=''; this.parentElement.style.background='#111'">
             <div class="project-card-overlay"></div>
             <div class="project-card-info">
-              <div class="project-card-num">03 // 2023–24</div>
+              <div class="project-card-num">05 // 2023–24</div>
               <div class="project-card-title">Urban Bins</div>
               <div class="project-card-meta">FrutoDS</div>
             </div>
@@ -182,14 +362,14 @@
           </div>
         </a>
 
-        <!-- Thermal Emitters (antes estaba Navantia) -->
+        <!-- Small: Thermal Emitters (06) -->
         <a href="projects/thermal.html" class="project-card small">
           <div class="project-card-inner">
             <img src="images/thermal-thumb.jpg" alt="E-Comfort Thermal Emitters"
                  onerror="this.src=''; this.parentElement.style.background='#111'">
             <div class="project-card-overlay"></div>
             <div class="project-card-info">
-              <div class="project-card-num">05 // 2022–2023</div>
+              <div class="project-card-num">06 // 2022–2023</div>
               <div class="project-card-title">E-Comfort Thermal</div>
               <div class="project-card-meta">Electromecánicos Viveiro</div>
             </div>
@@ -197,28 +377,15 @@
           </div>
         </a>
 
+        <!-- Small: 3D Masks (07) -->
         <a href="projects/masks.html" class="project-card small">
           <div class="project-card-inner">
             <img src="images/masks-render.png" alt="3D Masks Exercise"
                  onerror="this.src=''; this.parentElement.style.background='#111'">
             <div class="project-card-overlay"></div>
             <div class="project-card-info">
-              <div class="project-card-num">06 // 2021–22</div>
-              <div class="project-card-title">3D Masks</div>
-              <div class="project-card-meta">Academic // EUDI</div>
-            </div>
-            <div class="project-card-arrow">→</div>
-          </div>
-        </a>
-
-        <a href="projects/modules.html" class="project-card small">
-          <div class="project-card-inner">
-            <img src="images/modules-thumb.png" alt="Modules Design"
-                 onerror="this.src=''; this.parentElement.style.background='#111'">
-            <div class="project-card-overlay"></div>
-            <div class="project-card-info">
               <div class="project-card-num">07 // 2021–22</div>
-              <div class="project-card-title">Modular Design</div>
+              <div class="project-card-title">3D Masks</div>
               <div class="project-card-meta">Academic // EUDI</div>
             </div>
             <div class="project-card-arrow">→</div>
@@ -258,7 +425,7 @@
           <a href="projects/proraptor.html" class="btn btn-primary" style="margin-top:32px; display:inline-flex;">Explore Project →</a>
         </div>
         <div style="aspect-ratio:16/9; background:#111; border:1px solid var(--border); overflow:hidden;">
-          <img src="images/proraptor-front.jpg" alt="Proraptor Front View"
+          <img src="images/proraptor-night.jpg" alt="Proraptor Front View"
                style="width:100%;height:100%;object-fit:cover;filter:brightness(0.8) saturate(0.7);"
                onerror="this.style.display='none'">
         </div>
