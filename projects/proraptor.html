@@ -465,8 +465,8 @@
     <a href="../work.html" class="back-link">← Back to All Projects</a>
 
     <!-- ─── PROJECT HERO ─── -->
-    <div class="project-hero">
-      <img src="../images/proraptor-hero.JPG" alt="Cupra Proraptor Amphibious Motorcycle"
+        <div class="project-hero">
+      <img src="../images/proraptor-hero.jpg" alt="Cupra Proraptor Amphibious Motorcycle"
            onerror="this.src=''; this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a1a1a)'">
       <div class="project-hero-overlay"></div>
       
@@ -484,6 +484,14 @@
              onerror="this.style.display='none'">
       </div>
       
+      <!-- Logo EUDI debajo del título, a la izquierda -->
+      <div style="position: absolute; bottom: 70px; left: 48px; top:620px; z-index: 20; line-height: 0;">
+        <img src="../images/eudi-logo.png" 
+             alt="EUDI Logo" 
+             style="height: 50px; width: auto; filter: invert(100%); opacity: 0.8; display: block;"
+             onerror="this.style.display='none'">
+      </div>
+      
       <div class="project-hero-content">
         <div class="project-meta-row">
           <span class="meta-pill">01</span>
@@ -497,7 +505,6 @@
         </div>
       </div>
     </div>
-
     <!-- ─── PROJECT BODY ─── -->
      <div class="project-body">
       <div class="project-text">
@@ -509,7 +516,7 @@
             <p>The technological revolution has penetrated our lives faster than many can adapt. The sensations, experiences and entertainment offered by new technologies, social media and video games are causing people in search of adrenaline and new emotions to increase their demand for increasingly innovative and emotionally charged products.</p>
             <p>This project focuses on designing a vehicle capable of moving across multiple terrains and environments, giving the user a freedom never seen before, and society a product of real utility and value. Jet skis are among the most fun and agile aquatic vehicles available, but they are rarely used in daily life and rarely form a personal bond with the user the way motorcycles do.</p>
             
-            <img src="../images/proraptor-context1.PNG" alt="Proraptor contextual research 2" 
+            <img src="../images/proraptor-context1.png" alt="Proraptor contextual research 2" 
                  style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; display: block; margin-top: 20px;"
                  onerror="this.style.background='#111'; this.style.height='200px'">
           </div>
@@ -777,7 +784,7 @@
         <!-- ─── IMAGE GALLERY FINAL CON LIGHTBOX NAVEGABLE ─── -->
            <!-- Imagen full width del hero al inicio de la galería -->
      <div class="gallery-grid cols-1" style="margin:0 48px 16px;">
-      <img src="../images/proraptor-herogallery.JPG" alt="Proraptor Hero Gallery"
+      <img src="../images/proraptor-herogallery.jpg" alt="Proraptor Hero Gallery"
            style="width: 100%; height: auto; cursor: pointer;" onclick="openFinalLightbox(0)"
            onerror="this.style.background='#111'; this.style.height='300px'">
     </div>
@@ -801,6 +808,54 @@
            style="height:260px; cursor: pointer;" onclick="openFinalLightbox(5)"
            onerror="this.style.background='#111'; this.style.height='260px'">
     </div>
+         <!-- ═══ SECCIÓN ANIMACIÓN ═══ -->
+    <div style="margin: 80px 48px 40px 48px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px;">// MOTION</div>
+      <h2 style="font-family: var(--font-head); font-size: 24px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text);">Animación</h2>
+    </div>
+
+    <!-- Enlace a YouTube -->
+    <a href="https://youtu.be/IekSfXw0P_A" target="_blank" rel="noopener noreferrer" 
+       style="margin: 0 48px 60px 48px; display: block; text-decoration: none; cursor: pointer;">
+      <div style="position: relative; overflow: hidden; background: #000; aspect-ratio: 16/9; border: 1px solid var(--border); border-radius: 4px; transition: all 0.3s ease;" 
+           onmouseenter="this.style.borderColor='var(--accent)'; this.style.boxShadow='0 0 30px rgba(244,149,29,0.2)'"
+           onmouseleave="this.style.borderColor='var(--border)'; this.style.boxShadow='none'">
+        
+        <!-- Thumbnail del video -->
+        <img src="../images/proraptor-animation-thumb.png" alt="Proraptor Animation" 
+             style="width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.6);"
+             onerror="this.style.background='#111'">
+        
+        <!-- Overlay con botón de YouTube -->
+        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+          <!-- Icono de YouTube -->
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,0,0,0.2); border: 2px solid #FF0000; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"
+               onmouseenter="this.style.background='rgba(255,0,0,0.4)'; this.style.transform='scale(1.05)'"
+               onmouseleave="this.style.background='rgba(255,0,0,0.2)'; this.style.transform='scale(1)'">
+            <svg width="40" height="28" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.498 2.652C23.199 1.553 22.314 0.668 21.215 0.369C19.344 0 12 0 12 0C12 0 4.656 0 2.785 0.369C1.686 0.668 0.801 1.553 0.502 2.652C0.133 4.523 0.133 8.5 0.133 8.5C0.133 8.5 0.133 12.477 0.502 14.348C0.801 15.447 1.686 16.332 2.785 16.631C4.656 17 12 17 12 17C12 17 19.344 17 21.215 16.631C22.314 16.332 23.199 15.447 23.498 14.348C23.867 12.477 23.867 8.5 23.867 8.5C23.867 8.5 23.867 4.523 23.498 2.652Z" fill="#FF0000"/>
+              <path d="M9.5 12.2L15.8 8.5L9.5 4.8V12.2Z" fill="white"/>
+            </svg>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 0.2em; text-transform: uppercase;">Watch on YouTube</div>
+        </div>
+        
+        <!-- Texto inferior -->
+        <div style="position: absolute; bottom: 20px; left: 24px; right: 24px;">
+          <div style="font-family: var(--font-head); font-size: 14px; color: white; text-shadow: 0 0 20px rgba(0,0,0,0.8);">Proraptor — Motion Reel</div>
+          <div style="font-family: var(--font-mono); font-size: 8px; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase;">02:00 min</div>
+        </div>
+        
+      </div>
+    </a>
+
+    <style>
+      #videoLightbox.open {
+        display: flex !important;
+      }
+      
+      /* La barra de progreso y el thumb se actualizan con JS */
+    </style>
 
     <!-- Nav between projects -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
@@ -810,7 +865,7 @@
       </div>
       <div style="padding:32px 48px;background:var(--bg);text-align:right;">
         <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div>
-        <a href="containers.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;transition:color 0.3s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">800/1100L Containers →</a>
+        <a href="node.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;transition:color 0.3s;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Node →</a>
       </div>
     </div>
 
@@ -863,7 +918,7 @@ let currentCMFIndex = 0;
 
 // ============ GALERÍA 3: FINAL (6 imágenes) ============
 const finalGallery = [
-  { src: '../images/proraptor-herogallery.JPG', caption: 'Proraptor — Hero Gallery' },
+  { src: '../images/proraptor-herogallery.jpg', caption: 'Proraptor — Hero Gallery' },
   { src: '../images/proraptor-front.jpg', caption: 'Proraptor — Front View' },
   { src: '../images/proraptor-side.jpg', caption: 'Proraptor — Side View' },
   { src: '../images/proraptor-water1.jpg', caption: 'Proraptor — Water Mode' },
@@ -1104,6 +1159,120 @@ function openCMFDetailLightbox(index) {
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+// ============ VIDEO LIGHTBOX CON CONTROLES ============
+let isPlaying = false;
+let isMuted = false;
+
+function openVideoLightbox() {
+  const lb = document.getElementById('videoLightbox');
+  const video = document.getElementById('animationVideo');
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  
+  // Cargar duración cuando esté disponible
+  video.addEventListener('loadedmetadata', function() {
+    const duration = formatTime(video.duration);
+    document.getElementById('durationDisplay').textContent = duration;
+  });
+  
+  video.currentTime = 0;
+  video.play();
+  isPlaying = true;
+  document.getElementById('playBtn').textContent = '⏸';
+  
+  // Iniciar actualización de la barra
+  updateProgress();
+}
+
+function closeVideoLightbox(event) {
+  if (event && event.target !== event.currentTarget) return;
+  
+  const lb = document.getElementById('videoLightbox');
+  const video = document.getElementById('animationVideo');
+  
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  
+  video.pause();
+  video.currentTime = 0;
+  isPlaying = false;
+  document.getElementById('playBtn').textContent = '▶';
+}
+
+function togglePlay() {
+  const video = document.getElementById('animationVideo');
+  const btn = document.getElementById('playBtn');
+  
+  if (video.paused) {
+    video.play();
+    btn.textContent = '⏸';
+    isPlaying = true;
+  } else {
+    video.pause();
+    btn.textContent = '▶';
+    isPlaying = false;
+  }
+}
+
+function toggleMute() {
+  const video = document.getElementById('animationVideo');
+  const btn = document.querySelector('#videoControls div:last-child');
+  
+  video.muted = !video.muted;
+  isMuted = video.muted;
+  btn.textContent = video.muted ? '🔇' : '🔊';
+}
+
+function seekVideo(event) {
+  const video = document.getElementById('animationVideo');
+  const bar = event.currentTarget;
+  const rect = bar.getBoundingClientRect();
+  const percent = (event.clientX - rect.left) / rect.width;
+  const newTime = percent * video.duration;
+  video.currentTime = newTime;
+}
+
+function updateProgress() {
+  const video = document.getElementById('animationVideo');
+  const progress = document.getElementById('progressBar');
+  const thumb = document.getElementById('progressThumb');
+  const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+  
+  if (video && !video.paused) {
+    const percent = (video.currentTime / video.duration) * 100;
+    progress.style.width = percent + '%';
+    thumb.style.left = percent + '%';
+    currentTimeDisplay.textContent = formatTime(video.currentTime);
+  }
+  
+  requestAnimationFrame(updateProgress);
+}
+
+function formatTime(seconds) {
+  if (isNaN(seconds)) return '0:00';
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return mins + ':' + (secs < 10 ? '0' : '') + secs;
+}
+
+// Cerrar con tecla ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const lb = document.getElementById('videoLightbox');
+    if (lb.classList.contains('open')) {
+      closeVideoLightbox();
+    }
+  }
+});
+
+// Actualizar botón play/pause cuando el video termina
+document.addEventListener('ended', function(e) {
+  if (e.target.id === 'animationVideo') {
+    document.getElementById('playBtn').textContent = '▶';
+    isPlaying = false;
+  }
+});
 </script>
 
 </body>
