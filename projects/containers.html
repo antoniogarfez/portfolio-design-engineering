@@ -6,7 +6,6 @@
   <title>800/1100L Containers — Antonio García Fernández</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    /* Estilos para el layout de dos columnas dentro del texto */
     .two-column-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -31,7 +30,6 @@
       border-radius: 4px;
     }
     
-    /* Estilos para paneles técnicos */
     .panel-item {
       position: relative;
       overflow: hidden;
@@ -73,44 +71,85 @@
       opacity: 1;
     }
     
-    #lightbox {
+    /* LIGHTBOX CON NAVEGACIÓN */
+    .lightbox-overlay {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 9999;
       background: rgba(0,0,0,0.96);
-      cursor: zoom-out;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       gap: 16px;
       padding: 24px;
     }
-    
-    #lightbox.open {
+    .lightbox-overlay.open {
       display: flex !important;
     }
-    
-    #lightbox img {
-      max-width: 90%;
+    .lightbox-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 85vh;
+    }
+    .lightbox-img {
+      max-width: 85%;
       max-height: 85vh;
       object-fit: contain;
       box-shadow: 0 0 80px rgba(0,0,0,0.8);
     }
-    
-    #lightbox-caption {
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--accent);
+      color: white;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      z-index: 10001;
+    }
+    .lightbox-nav:hover {
+      background: var(--accent);
+      color: #000;
+    }
+    .lightbox-prev {
+      left: 20px;
+    }
+    .lightbox-next {
+      right: 20px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      z-index: 10001;
+    }
+    .lightbox-close:hover {
+      color: var(--accent);
+    }
+    .lightbox-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+    }
+    .lightbox-caption {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       color: rgba(255,255,255,0.4);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-    }
-    
-    .lightbox-close {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.15em;
     }
     
     @media (max-width: 768px) {
@@ -154,13 +193,14 @@
         <div class="project-title-block"><h1>Rear-Load<br><span>Containers</span><br>800/1100L</h1></div>
       </div>
     </div>
-    <!-- Logo de FrutoDS en esquina superior derecha -->
-      <div style="position: absolute; top: 130px; right: 80px; z-index: 20;">
-        <img src="../images/frutods-logo.png" 
-             alt="FrutoDS Logo" 
-             style="height: 160px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
-             onerror="this.style.display='none'">
-      </div>
+    
+    <!-- Logo de FrutoDS -->
+    <div style="position: absolute; top: 130px; right: 80px; z-index: 20;">
+      <img src="../images/frutods-logo.png" 
+           alt="FrutoDS Logo" 
+           style="height: 160px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
+           onerror="this.style.display='none'">
+    </div>
 
     <div class="project-body">
       <div class="project-text">
@@ -168,7 +208,6 @@
         <p>Design new concepts for rear-load containers of 800 and 1100 litre capacity, in collaboration with FrutoDS and Formato Verde — companies specialising in urban waste management solutions for local councils.</p>
         <p><strong>What?</strong> New rear-loading container concepts. <strong>Who?</strong> Urban planning departments and city councils. <strong>How?</strong> Plastic — injection moulding and rotomoulding. <strong>Where?</strong> High-demand public areas.</p>
 
-        <!-- Layout de dos columnas: texto e imagen vertical -->
         <div class="two-column-layout">
           <div class="text-column">
             <h2>Design Rationale</h2>
@@ -185,6 +224,44 @@
           <div class="image-column">
             <img src="../images/renders-containers.png" alt="Container renders" onerror="this.style.background='#111'; this.style.height='400px'">
           </div>
+        </div>
+
+        <!-- ===== SECCIÓN 800L CONCEPTS ===== -->
+        <h2>800L Concepts</h2>
+        
+        <div style="margin: 20px 0 10px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openConceptsLightbox(0)">
+          <img src="../images/contenedores-800-1.jpg" alt="800L container concept 1" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 10px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openConceptsLightbox(1)">
+          <img src="../images/contenedores-800-2.jpg" alt="800L container concept 2" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 40px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openConceptsLightbox(2)">
+          <img src="../images/contenedores-800-3.jpg" alt="800L container concept 3" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+
+        <!-- ===== SECCIÓN 1100L CONCEPTS ===== -->
+        <h2>1100L Concepts</h2>
+        
+        <div style="margin: 20px 0 10px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openConceptsLightbox(3)">
+          <img src="../images/contenedores-1100-1.jpg" alt="1100L container concept 1" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 10px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openConceptsLightbox(4)">
+          <img src="../images/contenedores-1100-2.jpg" alt="1100L container concept 2" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 40px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openConceptsLightbox(5)">
+          <img src="../images/contenedores-1100-3.jpg" alt="1100L container concept 3" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
         </div>
       </div>
 
@@ -219,11 +296,11 @@
     </div>
 
     <div class="gallery-grid cols-2" style="margin:0 48px 64px;">
-      <div class="panel-item" onclick="openLightbox('../images/containers-panel.png', 'Panel 01 — Technical Drawings & Specifications')">
+      <div class="panel-item" onclick="openPanelsLightbox(0)">
         <img src="../images/containers-panel.png" alt="Panel 01">
         <div class="panel-label">01 // Technical Drawings</div>
       </div>
-      <div class="panel-item" onclick="openLightbox('../images/containers-panel1.png', 'Panel 02 — Renders & Colour Variants')">
+      <div class="panel-item" onclick="openPanelsLightbox(1)">
         <img src="../images/containers-panel1.png" alt="Panel 02">
         <div class="panel-label">02 // Renders & Colour Variants</div>
       </div>
@@ -236,35 +313,156 @@
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
-      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="proraptor.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Proraptor</a></div>
+      <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="dedalos.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← Dedalos</a></div>
       <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="wastebin.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Urban Bins →</a></div>
     </div>
     <footer><span class="footer-copy">© 2025 Antonio García Fernández</span><div class="footer-links"><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div></footer>
   </main>
 </div>
 
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt="">
-  <div id="lightbox-caption"></div>
-  <div class="lightbox-close">CLICK PARA CERRAR / ESC</div>
+<!-- LIGHTBOX PARA CONCEPTS (6 imágenes) -->
+<div id="lightbox-concepts" class="lightbox-overlay" onclick="closeConceptsLightbox(event)">
+  <div class="lightbox-close" onclick="closeConceptsLightbox()">✕ CLOSE</div>
+  <div class="lightbox-container">
+    <button class="lightbox-nav lightbox-prev" onclick="prevConceptsLightbox(event)">❮</button>
+    <img id="concepts-lightbox-img" class="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextConceptsLightbox(event)">❯</button>
+  </div>
+  <div id="concepts-lightbox-caption" class="lightbox-caption"></div>
+  <div class="lightbox-counter" id="concepts-lightbox-counter"></div>
+</div>
+
+<!-- LIGHTBOX PARA PANELES (2 imágenes) -->
+<div id="lightbox-panels" class="lightbox-overlay" onclick="closePanelsLightbox(event)">
+  <div class="lightbox-close" onclick="closePanelsLightbox()">✕ CLOSE</div>
+  <div class="lightbox-container">
+    <button class="lightbox-nav lightbox-prev" onclick="prevPanelsLightbox(event)">❮</button>
+    <img id="panels-lightbox-img" class="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextPanelsLightbox(event)">❯</button>
+  </div>
+  <div id="panels-lightbox-caption" class="lightbox-caption"></div>
+  <div class="lightbox-counter" id="panels-lightbox-counter"></div>
 </div>
 
 <script src="../js/main.js"></script>
 <script>
-function openLightbox(src, caption) {
-  const lb = document.getElementById('lightbox');
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox-caption').textContent = caption;
+// ============ GALERÍA DE CONCEPTS (6 imágenes) ============
+const conceptsGallery = [
+  { src: '../images/contenedores-800-1.jpg', caption: '800L Container — Concept 01' },
+  { src: '../images/contenedores-800-2.jpg', caption: '800L Container — Concept 02' },
+  { src: '../images/contenedores-800-3.jpg', caption: '800L Container — Concept 03' },
+  { src: '../images/contenedores-1100-1.jpg', caption: '1100L Container — Concept 01' },
+  { src: '../images/contenedores-1100-2.jpg', caption: '1100L Container — Concept 02' },
+  { src: '../images/contenedores-1100-3.jpg', caption: '1100L Container — Concept 03' }
+];
+
+let currentConceptsGallery = [];
+let currentConceptsIndex = 0;
+
+function openConceptsLightbox(index) {
+  currentConceptsGallery = conceptsGallery;
+  currentConceptsIndex = index;
+  const lb = document.getElementById('lightbox-concepts');
+  const img = document.getElementById('concepts-lightbox-img');
+  const cap = document.getElementById('concepts-lightbox-caption');
+  const cnt = document.getElementById('concepts-lightbox-counter');
+  img.src = currentConceptsGallery[index].src;
+  cap.textContent = currentConceptsGallery[index].caption;
+  cnt.textContent = (index + 1) + ' / ' + currentConceptsGallery.length;
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
+
+function closeConceptsLightbox(e) {
+  if (e && (e.target.classList.contains('lightbox-nav') || e.target.closest('.lightbox-nav'))) return;
+  document.getElementById('lightbox-concepts').classList.remove('open');
   document.body.style.overflow = '';
+  currentConceptsGallery = [];
 }
+
+function nextConceptsLightbox(e) {
+  if (e) e.stopPropagation();
+  if (!currentConceptsGallery.length) return;
+  currentConceptsIndex = (currentConceptsIndex + 1) % currentConceptsGallery.length;
+  document.getElementById('concepts-lightbox-img').src = currentConceptsGallery[currentConceptsIndex].src;
+  document.getElementById('concepts-lightbox-caption').textContent = currentConceptsGallery[currentConceptsIndex].caption;
+  document.getElementById('concepts-lightbox-counter').textContent = (currentConceptsIndex + 1) + ' / ' + currentConceptsGallery.length;
+}
+
+function prevConceptsLightbox(e) {
+  if (e) e.stopPropagation();
+  if (!currentConceptsGallery.length) return;
+  currentConceptsIndex = (currentConceptsIndex - 1 + currentConceptsGallery.length) % currentConceptsGallery.length;
+  document.getElementById('concepts-lightbox-img').src = currentConceptsGallery[currentConceptsIndex].src;
+  document.getElementById('concepts-lightbox-caption').textContent = currentConceptsGallery[currentConceptsIndex].caption;
+  document.getElementById('concepts-lightbox-counter').textContent = (currentConceptsIndex + 1) + ' / ' + currentConceptsGallery.length;
+}
+
+// ============ GALERÍA DE PANELES (2 imágenes) ============
+const panelsGallery = [
+  { src: '../images/containers-panel.png', caption: 'Panel 01 — Technical Drawings & Specifications' },
+  { src: '../images/containers-panel1.png', caption: 'Panel 02 — Renders & Colour Variants' }
+];
+
+let currentPanelsGallery = [];
+let currentPanelsIndex = 0;
+
+function openPanelsLightbox(index) {
+  currentPanelsGallery = panelsGallery;
+  currentPanelsIndex = index;
+  const lb = document.getElementById('lightbox-panels');
+  const img = document.getElementById('panels-lightbox-img');
+  const cap = document.getElementById('panels-lightbox-caption');
+  const cnt = document.getElementById('panels-lightbox-counter');
+  img.src = currentPanelsGallery[index].src;
+  cap.textContent = currentPanelsGallery[index].caption;
+  cnt.textContent = (index + 1) + ' / ' + currentPanelsGallery.length;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePanelsLightbox(e) {
+  if (e && (e.target.classList.contains('lightbox-nav') || e.target.closest('.lightbox-nav'))) return;
+  document.getElementById('lightbox-panels').classList.remove('open');
+  document.body.style.overflow = '';
+  currentPanelsGallery = [];
+}
+
+function nextPanelsLightbox(e) {
+  if (e) e.stopPropagation();
+  if (!currentPanelsGallery.length) return;
+  currentPanelsIndex = (currentPanelsIndex + 1) % currentPanelsGallery.length;
+  document.getElementById('panels-lightbox-img').src = currentPanelsGallery[currentPanelsIndex].src;
+  document.getElementById('panels-lightbox-caption').textContent = currentPanelsGallery[currentPanelsIndex].caption;
+  document.getElementById('panels-lightbox-counter').textContent = (currentPanelsIndex + 1) + ' / ' + currentPanelsGallery.length;
+}
+
+function prevPanelsLightbox(e) {
+  if (e) e.stopPropagation();
+  if (!currentPanelsGallery.length) return;
+  currentPanelsIndex = (currentPanelsIndex - 1 + currentPanelsGallery.length) % currentPanelsGallery.length;
+  document.getElementById('panels-lightbox-img').src = currentPanelsGallery[currentPanelsIndex].src;
+  document.getElementById('panels-lightbox-caption').textContent = currentPanelsGallery[currentPanelsIndex].caption;
+  document.getElementById('panels-lightbox-counter').textContent = (currentPanelsIndex + 1) + ' / ' + currentPanelsGallery.length;
+}
+
+// Teclado: ESC cierra ambos, flechas navegan en el que esté abierto
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
+  const lbc = document.getElementById('lightbox-concepts');
+  const lbp = document.getElementById('lightbox-panels');
+  
+  if (e.key === 'Escape') {
+    if (lbc.classList.contains('open')) closeConceptsLightbox();
+    if (lbp.classList.contains('open')) closePanelsLightbox();
+  }
+  if (e.key === 'ArrowLeft') {
+    if (lbc.classList.contains('open')) prevConceptsLightbox(e);
+    if (lbp.classList.contains('open')) prevPanelsLightbox(e);
+  }
+  if (e.key === 'ArrowRight') {
+    if (lbc.classList.contains('open')) nextConceptsLightbox(e);
+    if (lbp.classList.contains('open')) nextPanelsLightbox(e);
+  }
 });
 </script>
 </body>
