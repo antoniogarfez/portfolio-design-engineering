@@ -54,8 +54,100 @@
         top: 0;
       }
     }
+        /* LIGHTBOX CON NAVEGACIÓN */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.96);
+      cursor: default;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+    #lightbox.open {
+      display: flex !important;
+    }
+    .lightbox-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 85vh;
+    }
+    #lightbox-img {
+      max-width: 85%;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--accent);
+      color: white;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      z-index: 10001;
+    }
+    .lightbox-nav:hover {
+      background: var(--accent);
+      color: #000;
+    }
+    .lightbox-prev {
+      left: 20px;
+    }
+    .lightbox-next {
+      right: 20px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      z-index: 10001;
+    }
+    .lightbox-close:hover {
+      color: var(--accent);
+    }
+    .lightbox-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+    }
+    #lightbox-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeThermalLightbox(event)">
+  <div class="lightbox-close" onclick="closeThermalLightbox()">✕ CLOSE</div>
+  <div class="lightbox-container">
+    <button class="lightbox-nav lightbox-prev" onclick="prevThermalLightbox(event)">❮</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="nextThermalLightbox(event)">❯</button>
+  </div>
+  <div id="lightbox-caption"></div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
 <body>
 <div class="cursor"></div><div class="cursor-follower"></div>
 <button class="mobile-menu-btn"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><rect width="20" height="1.5" fill="currentColor"/><rect y="6" width="14" height="1.5" fill="currentColor"/><rect y="12" width="20" height="1.5" fill="currentColor"/></svg></button>
@@ -74,6 +166,20 @@
     <div class="project-hero">
       <img src="../images/thermal-thumb.jpg" alt="04 // E-COMFORT THERMAL EMITTERS" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a1a1a)'">
       <div class="project-hero-overlay"></div>
+      <!-- Logo de FrutoDS en esquina superior derecha -->
+      <div style="position: absolute; top: 90px; right: 190px; z-index: 20;">
+        <img src="../images/ev-logo.png" 
+             alt="FrutoDS Logo" 
+             style="height: 160px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
+             onerror="this.style.display='none'">
+      </div>
+       <!-- Logo EUDI debajo del título, a la izquierda -->
+      <div style="position: absolute; bottom: 70px; left: 48px; top:665px; z-index: 20; line-height: 0;">
+        <img src="../images/eudi-logo.png" 
+             alt="EUDI Logo" 
+             style="height: 50px; width: auto; filter: invert(100%); opacity: 0.8; display: block;"
+             onerror="this.style.display='none'">
+      </div>
       <div class="project-hero-content">
         <div class="project-meta-row"><span class="meta-pill">04</span><span class="meta-pill">2022–2023</span><span class="meta-pill">Electromecánicos Viveiro</span><span class="meta-pill">Home Appliance</span></div>
         <div class="project-title-block"><h1>E-Comfort<br><span>Thermal</span><br>Emitters</h1></div>
@@ -97,15 +203,73 @@
             <h2>CMF</h2>
             <p>Colour variants include: white/grey (clean minimal), slate/dark grey (sophisticated), and accent colour variations (yellow, red) for statement pieces. The interchangeable fairing panel concept allows personalisation at retail level.</p>
           </div>
+
+          
           
           <div class="image-column">
             <img src="../images/renders-emitters.png" alt="E-Comfort thermal emitters renders" onerror="this.style.background='#111'; this.style.height='400px'">
           </div>
         </div>
+
+                <!-- ===== SECCIÓN SKETCHES ===== -->
+        <h2>Sketches</h2>
         
-        <!-- Imagen full width emitters-cmf -->
-        <div class="full-width-image">
-          <img src="../images/emitters-cmf.png" alt="CMF exploration for thermal emitters" onerror="this.style.background='#111'; this.style.height='300px'">
+        <div style="margin: 20px 0 10px 0; width: 100%; line-height: 0;">
+          <img src="../images/thermal-bocetos1.jpg" alt="Thermal sketches 1" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 10px 0; width: 100%; line-height: 0;">
+          <img src="../images/thermal-bocetos2.jpg" alt="Thermal sketches 2" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 40px 0; width: 100%; line-height: 0;">
+          <img src="../images/thermal-bocetos3.jpg" alt="Thermal sketches 3" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+
+        <!-- ===== SECCIÓN DEVELOPMENT ===== -->
+        <h2>Development</h2>
+        
+        <div style="margin: 20px 0 10px 0; width: 100%; line-height: 0;">
+          <img src="../images/thermal-illus1.jpg" alt="Thermal development 1" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 10px 0; width: 100%; line-height: 0;">
+          <img src="../images/thermal-illus2.jpg" alt="Thermal development 2" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 40px 0; width: 100%; line-height: 0;">
+          <img src="../images/thermal-illus3.jpg" alt="Thermal development 3" 
+               style="width: 100%; height: auto; display: block; filter: invert(100%);"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+
+                <!-- ===== SECCIÓN PANELS ===== -->
+        <h2>Panels</h2>
+        
+        <div style="margin: 20px 0 10px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openThermalLightbox(0)">
+          <img src="../images/thermal-panel1.jpg" alt="Thermal panel 1" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        <div style="margin: 10px 0 40px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openThermalLightbox(1)">
+          <img src="../images/thermal-panel2.jpg" alt="Thermal panel 2" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='200px'">
+        </div>
+        
+        <!-- ===== SECCIÓN FINAL RENDERS ===== -->
+        <h2>Final renders</h2>
+        
+        <div style="margin: 20px 0 40px 0; width: 100%; line-height: 0; cursor: pointer;" onclick="openThermalLightbox(2)">
+          <img src="../images/emitters-cmf.png" alt="CMF exploration for thermal emitters" 
+               style="width: 100%; height: auto; display: block;"
+               onerror="this.style.background='#111'; this.style.height='300px'">
         </div>
         </div>
       <div class="project-sidebar-info">
@@ -135,5 +299,70 @@
   </main>
 </div>
 <script src="../js/main.js"></script>
+<script>
+// ============ THERMAL GALLERY (3 imágenes) ============
+const thermalGallery = [
+  { src: '../images/thermal-panel1.jpg', caption: 'Thermal — Panel 01' },
+  { src: '../images/thermal-panel2.jpg', caption: 'Thermal — Panel 02' },
+  { src: '../images/emitters-cmf.png', caption: 'Thermal — Final Renders CMF' }
+];
+
+let currentThermalGallery = [];
+let currentThermalIndex = 0;
+
+function openThermalLightbox(index) {
+  currentThermalGallery = thermalGallery;
+  currentThermalIndex = index;
+  const lb = document.getElementById('lightbox');
+  const imgElement = document.getElementById('lightbox-img');
+  const captionElement = document.getElementById('lightbox-caption');
+  const counterElement = document.getElementById('lightbox-counter');
+  
+  imgElement.src = currentThermalGallery[index].src;
+  captionElement.textContent = currentThermalGallery[index].caption;
+  counterElement.textContent = `${index + 1} / ${currentThermalGallery.length}`;
+  
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeThermalLightbox(event) {
+  if (event && (event.target.classList?.contains('lightbox-nav') || 
+                event.target.closest?.('.lightbox-nav'))) {
+    return;
+  }
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  currentThermalGallery = [];
+}
+
+function nextThermalLightbox(event) {
+  if (event) event.stopPropagation();
+  if (currentThermalGallery.length === 0) return;
+  
+  currentThermalIndex = (currentThermalIndex + 1) % currentThermalGallery.length;
+  document.getElementById('lightbox-img').src = currentThermalGallery[currentThermalIndex].src;
+  document.getElementById('lightbox-caption').textContent = currentThermalGallery[currentThermalIndex].caption;
+  document.getElementById('lightbox-counter').textContent = `${currentThermalIndex + 1} / ${currentThermalGallery.length}`;
+}
+
+function prevThermalLightbox(event) {
+  if (event) event.stopPropagation();
+  if (currentThermalGallery.length === 0) return;
+  
+  currentThermalIndex = (currentThermalIndex - 1 + currentThermalGallery.length) % currentThermalGallery.length;
+  document.getElementById('lightbox-img').src = currentThermalGallery[currentThermalIndex].src;
+  document.getElementById('lightbox-caption').textContent = currentThermalGallery[currentThermalIndex].caption;
+  document.getElementById('lightbox-counter').textContent = `${currentThermalIndex + 1} / ${currentThermalGallery.length}`;
+}
+
+// Cerrar con tecla ESC y navegar con flechas
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeThermalLightbox();
+  if (e.key === 'ArrowLeft') prevThermalLightbox(e);
+  if (e.key === 'ArrowRight') nextThermalLightbox(e);
+});
+</script>
 </body>
 </html>
