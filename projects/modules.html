@@ -38,6 +38,18 @@
     .gallery-grid {
       overflow: visible !important;
     }
+
+    .image-column {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .image-column img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -62,18 +74,64 @@
         <div class="project-meta-row"><span class="meta-pill">07</span><span class="meta-pill">2021–2022</span><span class="meta-pill">EUDI Academic</span><span class="meta-pill">Basic Design</span></div>
         <div class="project-title-block"><h1>Modular<br><span>Design</span><br>Exercise</h1></div>
       </div>
+      <!-- Logo EUDI debajo del título, a la izquierda -->
+      <div style="position: absolute; bottom: 70px; left: 120px; top:775px; z-index: 20; line-height: 0;">
+        <img src="../images/eudi-logo.png" 
+             alt="EUDI Logo" 
+             style="height: 50px; width: auto; filter: invert(100%); opacity: 0.8; display: block;"
+             onerror="this.style.display='none'">
+      </div>
     </div>
     <div class="project-body">
       <div class="project-text">
-        <h2>Exercise Overview</h2>
-        <p>A modular design exercise exploring interlocking geometry and spatial aggregation. The brief required developing a single modular unit that could combine and repeat in multiple configurations to create complex structures.</p>
-        <h2>Concept: Arcade</h2>
-        <p>Inspired by retro arcade game pixel art, the module is derived from an 8-bit pixel character abstracted into a 3D interlocking unit. The geometry enables connection on all axes, allowing infinite spatial growth in a fractal-like pattern.</p>
-        <h2>Process</h2>
-        <p>Development began with pixel studies and geometric abstraction, moving to Autodesk Fusion 360 for precision 3D modelling. The module was printed in white PLA and assembled into a complex 3D composition exploring density, void, and structural balance.</p>
-        <h2>Technical Drawing</h2>
-        <p>Full technical documentation was produced including a dimensioned orthographic drawing of the single module (R2.00, ø4.00, R5.00 references, 110mm height) ready for manufacturing.</p>
+
+        <!-- Layout de dos columnas: Exercise Overview + Concept Arcade + imagen a la derecha -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 0 0 40px 0; align-items: start;">
+          <div>
+            <h2>Exercise Overview</h2>
+            <p>A modular design exercise exploring interlocking geometry and spatial aggregation. The brief required developing a single modular unit that could combine and repeat in multiple configurations to create complex structures.</p>
+            
+            <h2>Concept: Arcade</h2>
+            <p>Inspired by retro arcade game pixel art, the module is derived from an 8-bit pixel character abstracted into a 3D interlocking unit. The geometry enables connection on all axes, allowing infinite spatial growth in a fractal-like pattern.</p>
+          </div>
+          <div class="image-column">
+            <img src="../images/modules-arcade.jpg" alt="Arcade concept module" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
         </div>
+
+                <!-- Layout de dos columnas: 40% imagen + 60% Process -->
+        <div style="display: grid; grid-template-columns: 40% 60%; gap: 48px; margin: 40px 0; align-items: start;">
+          <div class="image-column">
+            <img src="../images/modules-fusion.jpg" alt="Fusion 360 development" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px;"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+          <div>
+            <h2>Process</h2>
+            <p>Development began with pixel studies and geometric abstraction, moving to <strong>OpenSCAD</strong> for precision 3D modelling through parametric design. Mathematical formulas were used to define the interlocking geometry, allowing rapid iteration and precise control over the module's dimensions and connection points.</p>
+            <p>Multiple configurations were explored to test how the units could be joined together and how the collective behaviour of the assembled pieces would affect the overall structural integrity and visual composition. This iterative process helped refine the connection system and ensure the modules could be combined in infinite spatial arrangements.</p>
+            <p>Instead of 3D printing in PLA, the physical prototype was fabricated using <strong>poriexpan</strong> (extruded polystyrene foam), cut with a hot wire tool following cardboard templates that served as reference contours. This approach allowed for rapid, low-cost prototyping while maintaining precise geometries and a lightweight final assembly.</p>
+          </div>
+        </div>
+
+        <!-- Layout de dos columnas: Technical Drawing + imagen invertida a la derecha -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 40px 0; align-items: start;">
+          <div>
+            <h2>Technical Drawing</h2>
+            <p>Full technical documentation was produced using <strong>AutoCAD</strong>, resulting in a dimensioned orthographic drawing of the single module with all the exact measurements required to reproduce the geometry accurately.</p>
+            <p>The technical drawing includes all necessary references: <strong>R2.00, ø4.00, and R5.00</strong> callouts, alongside a total module height of <strong>110mm</strong>. Every dimension was meticulously defined to ensure the module could be manufactured consistently and assembled correctly with other units.</p>
+            <p>This documentation serves as the essential blueprint for fabrication, providing precise specifications for both digital and physical production methods, whether using CNC, hot wire cutting, or 3D printing.</p>
+          </div>
+          <div class="image-column">
+            <img src="../images/modules-tecnical.jpg" alt="Technical drawing" 
+                 style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; filter: invert(100%);"
+                 onerror="this.style.background='#111'; this.style.height='250px'">
+          </div>
+        </div>
+
+      </div>
       <div class="project-sidebar-info">
         <div class="info-block"><h4>Project Details</h4>
           <div class="info-row"><span class="key">Year</span><span class="val">2021–2022</span></div>
@@ -84,7 +142,7 @@
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;"><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">MODULAR</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">3D PRINT</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">FUSION 360</span><span style="font-family:var(--font-mono);font-size:7px;color:var(--text-dim);border:1px solid var(--border2);padding:4px 8px;">ACADEMIC</span></div>
         </div>
         <a href="../contact.html" class="btn btn-primary" style="display:block;text-align:center;">Discuss this project →</a>
-</div>
+      </div>
     </div>
     
     <!-- Galería con efecto hover -->
@@ -99,7 +157,7 @@
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
       <div style="padding:32px 48px;background:var(--bg);"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">PREV PROJECT</div><a href="masks.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">← 3D Masks</a></div>
-      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="relief.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Relief Exercise →</a></div>
+      <div style="padding:32px 48px;background:var(--bg);text-align:right;"><div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:8px;">NEXT PROJECT</div><a href="amphibian-bike.html" style="font-family:var(--font-head);font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-muted)'">Amphibian Bike →</a></div>
     </div>
     <footer><span class="footer-copy">© 2025 Antonio García Fernández</span><div class="footer-links"><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div></footer>
   </main>
